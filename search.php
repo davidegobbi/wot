@@ -14,7 +14,7 @@ get_header();
 
 	<?php if ( have_posts() ) : ?>
 
-		<header class="page-header container">
+		<header class="page-header container mt-4">
 			<div class="row">
 				<div class="col-12">
 					<h1 class="page-title">
@@ -53,5 +53,4 @@ get_header();
 	</main><!-- #main -->
 
 	<?php
-	get_sidebar();
 	get_footer();

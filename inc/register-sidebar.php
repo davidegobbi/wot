@@ -4,6 +4,9 @@
 *
 * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
 */
+
+
+/*
 function wot_widgets_init() {
   register_sidebar(
     array(
@@ -18,3 +21,4 @@ function wot_widgets_init() {
   );
 }
 add_action( 'widgets_init', 'wot_widgets_init' );
+*/

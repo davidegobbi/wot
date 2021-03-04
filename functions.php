@@ -150,6 +150,16 @@ if ( ! function_exists( 'wot_setup' ) ) :
 	require get_template_directory() . '/inc/register-sidebar.php';
 
 	/*
+	Comments
+	 */
+	 require get_template_directory() . '/inc/comments.php';
+
+	/*
+	WooCommerce
+	 */
+	 require get_template_directory() . '/inc/woocommerce.php';
+
+	/*
 	WOS assets
 	*/
 	require get_template_directory() . '/inc/wos-assets.php';

@@ -27,8 +27,6 @@
 
 		<div id="wrapper-navbar">
 
-			<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'wot' ); ?></a>
-
 			<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
 
 				<div class="container">
