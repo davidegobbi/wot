@@ -64,107 +64,121 @@ if ( ! function_exists( 'wot_setup' ) ) :
 			)
 		);
 
-			// Add theme support for selective refresh for widgets.
-			add_theme_support( 'customize-selective-refresh-widgets' );
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
 
-			/**
-			* Add support for core custom logo.
-			*
-			* @link https://codex.wordpress.org/Theme_Logo
-			*/
-			add_theme_support(
-				'custom-logo',
-				array(
-					'height'      => 250,
-					'width'       => 250,
-					'flex-width'  => true,
-					'flex-height' => true,
-				)
-			);
-		}
-	endif;
-	add_action( 'after_setup_theme', 'wot_setup' );
-
-	/**
-	* Set the content width in pixels, based on the theme's design and stylesheet.
-	*
-	* Priority 0 to make it available to lower priority callbacks.
-	*
-	* @global int $content_width
-	*/
-	function wot_content_width() {
-		$GLOBALS['content_width'] = apply_filters( 'wot_content_width', 640 );
+		/**
+		* Add support for core custom logo.
+		*
+		* @link https://codex.wordpress.org/Theme_Logo
+		*/
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'      => 250,
+				'width'       => 250,
+				'flex-width'  => true,
+				'flex-height' => true,
+			)
+		);
 	}
-	add_action( 'after_setup_theme', 'wot_content_width', 0 );
+endif;
+add_action( 'after_setup_theme', 'wot_setup' );
+
+/**
+* Set the content width in pixels, based on the theme's design and stylesheet.
+*
+* Priority 0 to make it available to lower priority callbacks.
+*
+* @global int $content_width
+*/
+function wot_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'wot_content_width', 640 );
+}
+add_action( 'after_setup_theme', 'wot_content_width', 0 );
 
 
-	/**
-	* Enqueue scripts and styles.
-	*/
-	function wot_scripts() {
-		wp_enqueue_style( 'wot-style', get_stylesheet_uri(), array(), _S_VERSION );
-		wp_style_add_data( 'wot-style', 'rtl', 'replace' );
+/**
+* Enqueue scripts and styles.
+*/
+function wot_scripts() {
+	wp_enqueue_style( 'wot-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_style_add_data( 'wot-style', 'rtl', 'replace' );
 
-		wp_enqueue_script( 'wot-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'wot-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
-		}
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
 	}
-	add_action( 'wp_enqueue_scripts', 'wot_scripts' );
+}
+add_action( 'wp_enqueue_scripts', 'wot_scripts' );
 
-	/**
-	* Custom template tags for this theme.
-	*/
-	require get_template_directory() . '/inc/template-tags.php';
+/**
+* Custom template tags for this theme.
+*/
+require get_template_directory() . '/inc/template-tags.php';
 
-	/**
-	* Functions which enhance the theme by hooking into WordPress.
-	*/
-	require get_template_directory() . '/inc/template-functions.php';
+/**
+* Functions which enhance the theme by hooking into WordPress.
+*/
+require get_template_directory() . '/inc/template-functions.php';
 
-	/**
-	* Customizer additions.
-	*/
-	require get_template_directory() . '/inc/customizer.php';
+/**
+* Customizer additions.
+*/
+require get_template_directory() . '/inc/customizer.php';
 
-	/**
-	* Load Jetpack compatibility file.
-	*/
-	if ( defined( 'JETPACK__VERSION' ) ) {
-		require get_template_directory() . '/inc/jetpack.php';
-	}
+/**
+* Load Jetpack compatibility file.
+*/
+if ( defined( 'JETPACK__VERSION' ) ) {
+	require get_template_directory() . '/inc/jetpack.php';
+}
 
-	/**
-	* Register Custom Navigation Walker
-	*/
-	function register_navwalker(){
-		require_once get_template_directory() . '/inc/wp-bootstrap-navwalker.php';
-	}
-	add_action( 'after_setup_theme', 'register_navwalker' );
 
-	/*
-	Menu and Sidebar
-	*/
-	require get_template_directory() . '/inc/register-nav.php';
-	require get_template_directory() . '/inc/register-sidebar.php';
+/**
+* Register Custom Navigation Walker
+*/
+function register_navwalker(){
+	require_once get_template_directory() . '/inc/wp-bootstrap-navwalker.php';
+}
+add_action( 'after_setup_theme', 'register_navwalker' );
 
-	/*
-	Comments
-	 */
-	 require get_template_directory() . '/inc/comments.php';
 
-	/*
-	WooCommerce
-	 */
-	 require get_template_directory() . '/inc/woocommerce.php';
+/*
+Menu and Sidebar
+*/
+require get_template_directory() . '/inc/register-nav.php';
+require get_template_directory() . '/inc/register-sidebar.php';
 
-	/*
-	WOS assets
-	*/
-	require get_template_directory() . '/inc/wos-assets.php';
 
-	/*
-	User documentation
-	*/
-	require get_template_directory() . '/inc/user-doc.php';
+/*
+Comments
+*/
+require get_template_directory() . '/inc/comments.php';
+
+
+/*
+WooCommerce
+*/
+/* functions */
+require get_template_directory() . '/inc/woocommerce.php';
+add_action( 'wp_enqueue_wc_scripts', 'themeslug_enqueue_style' );
+
+/* js scripts */
+function themeslug_enqueue_script() {
+	wp_enqueue_script( 'wot-woocommerce', get_template_directory_uri() . '/js/woocommerce.min.js', array(), _S_VERSION, true );
+}
+add_action('wp_enqueue_scripts','themeslug_enqueue_script');
+
+
+/*
+WOS assets
+*/
+require get_template_directory() . '/inc/wos-assets.php';
+
+
+/*
+User documentation
+*/
+require get_template_directory() . '/inc/user-doc.php';
