@@ -6,7 +6,6 @@ jQuery( document ).ready(function($) {
 
   // Checkout form
   if ( $('form.woocommerce-checkout').length ) {
-    $('form.woocommerce-checkout').addClass('container p-0');
     $('div#customer_details', this).removeClass('col2-set').addClass('row');
     $('div.col-1', this).removeClass('col-1').addClass('col-md-6');
     $('div.col-2', this).removeClass('col-2').addClass('col-md-6');
