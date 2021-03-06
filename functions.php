@@ -182,3 +182,9 @@ require get_template_directory() . '/inc/wos-assets.php';
 User documentation
 */
 require get_template_directory() . '/inc/user-doc.php';
+
+
+/*
+Custom fields
+ */
+require get_template_directory() . '/custom-fields/moduli-globali/moduli-globali.php';
