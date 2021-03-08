@@ -8,6 +8,15 @@
 *
 * @package WOT
 */
+
+if ( is_page_template('page-templates/page-fullwidth.php') ) {
+	$pageContainer = 'fullwidth';
+} elseif ( is_page_template('page-templates/page-fluid.php') ) {
+	$pageContainer = 'fluid';
+} else {
+	$pageContainer = 'boxed';
+}
+set_query_var( 'pageContainer', $pageContainer );
 ?>
 
 <!doctype html>
@@ -27,7 +36,7 @@
 		<?php
 		/*
 		BLOCCHI GLOBALI
-		 */
+		*/
 		// Inizializzo variabili blocchi globali
 		$activeTopbar = null;
 		$styleTopbar = null;

@@ -1,32 +1,40 @@
 <?php
 /**
- * The template for displaying all single posts
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
- *
- * @package WOT
- */
+* The template for displaying all single posts
+*
+* @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+*
+* @package WOT
+*/
 
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
 
-			get_template_part( 'template-parts/content', get_post_type() );
+				<?php
+				while ( have_posts() ) :
+					the_post();
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+					get_template_part( 'template-parts/content', get_post_type() );
 
-		endwhile; // End of the loop.
-		?>
+					// If comments are open or we have at least one comment, load up the comment template.
+					if ( comments_open() || get_comments_number() ) :
+						comments_template();
+					endif;
 
-	</main><!-- #main -->
+				endwhile; // End of the loop.
+				?>
+
+			</div>
+		</div>
+	</div>
+
+</main><!-- #main -->
 
 <?php
 get_footer();
