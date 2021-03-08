@@ -73,6 +73,25 @@
                         "ui_off_text": ""
                     },
                     {
+                        "key": "field_6045edba3fea9",
+                        "label": "Attiva Header",
+                        "name": "attiva_header",
+                        "type": "true_false",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 1,
+                        "ui": 0,
+                        "ui_on_text": "",
+                        "ui_off_text": ""
+                    },
+                    {
                         "key": "field_6043760d82cda",
                         "label": "Attiva Breadcrumbs",
                         "name": "attiva_breadcrumbs",
@@ -112,8 +131,8 @@
                     },
                     {
                         "key": "field_6043762a82cdc",
-                        "label": "Attiva Bottobar",
-                        "name": "attiva_bottobar",
+                        "label": "Attiva Bottombar",
+                        "name": "attiva_bottombar",
                         "type": "true_false",
                         "instructions": "",
                         "required": 0,
@@ -130,6 +149,23 @@
                         "ui_off_text": ""
                     }
                 ]
+            },
+            {
+                "key": "field_6045fd74e6cdf",
+                "label": "<-- vedi settaggi",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "new_lines": "wpautop",
+                "esc_html": 0
             },
             {
                 "key": "field_60436deb11dc1",
@@ -156,10 +192,10 @@
                 "endpoint": 0
             },
             {
-                "key": "field_6045e65d9f784",
-                "label": "Note",
-                "name": "",
-                "type": "message",
+                "key": "field_60463b6ebb3cc",
+                "label": "Topbar Style",
+                "name": "topbar_style",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -168,9 +204,15 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "La Topbar verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
-                "new_lines": "wpautop",
-                "esc_html": 0
+                "choices": {
+                    "standard": "Standard"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
             },
             {
                 "key": "field_6045e63e17592",
@@ -197,10 +239,10 @@
                 "endpoint": 0
             },
             {
-                "key": "field_6045e6ccffbfe",
-                "label": "Note",
-                "name": "",
-                "type": "message",
+                "key": "field_60463b61bb3cb",
+                "label": "Navbar Style",
+                "name": "navbar_style",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -209,9 +251,62 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "La Navbar verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
-                "new_lines": "wpautop",
-                "esc_html": 0
+                "choices": {
+                    "standard": "Standard"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
+            },
+            {
+                "key": "field_6045eda13fea8",
+                "label": "Header",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_6045edba3fea9",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_60463b53bb3ca",
+                "label": "Header Style",
+                "name": "header_style",
+                "type": "radio",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "standard": "Standard"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
             },
             {
                 "key": "field_6045e6b1ffbfd",
@@ -238,10 +333,10 @@
                 "endpoint": 0
             },
             {
-                "key": "field_6045e70b4cb58",
-                "label": "Note",
-                "name": "",
-                "type": "message",
+                "key": "field_60463b44bb3c9",
+                "label": "Breadcrumbs Style",
+                "name": "breadcrumbs_style",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -250,9 +345,15 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "Le Breadcrumbs verranno mostrate in questa pagina. Nessun altro settaggio richiesto.",
-                "new_lines": "wpautop",
-                "esc_html": 0
+                "choices": {
+                    "standard": "Standard"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
             },
             {
                 "key": "field_6045e7004cb57",
@@ -279,10 +380,10 @@
                 "endpoint": 0
             },
             {
-                "key": "field_60436e0611dc2",
-                "label": "Note",
-                "name": "",
-                "type": "message",
+                "key": "field_60463b35bb3c8",
+                "label": "Footer Style",
+                "name": "footer_style",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -291,9 +392,15 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "Il Footer verrà mostrato in questa pagina. Nessun altro settaggio richiesto.",
-                "new_lines": "wpautop",
-                "esc_html": 0
+                "choices": {
+                    "standard": "Standard"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
             },
             {
                 "key": "field_6045e7224cb59",
@@ -320,10 +427,10 @@
                 "endpoint": 0
             },
             {
-                "key": "field_6045e7314cb5a",
-                "label": "Note",
-                "name": "",
-                "type": "message",
+                "key": "field_60463ad997c88",
+                "label": "Bottombar Style",
+                "name": "bottombar_style",
+                "type": "radio",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -332,9 +439,15 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "La Bottombar verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
-                "new_lines": "wpautop",
-                "esc_html": 0
+                "choices": {
+                    "standard": "Standard"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
             }
         ],
         "location": [
