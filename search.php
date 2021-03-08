@@ -14,17 +14,13 @@ get_header();
 
 	<?php if ( have_posts() ) : ?>
 
-		<header class="page-header container mt-4">
-			<div class="row">
-				<div class="col-12">
-					<h1 class="page-title">
-						<?php
-						/* translators: %s: search query. */
-						printf( esc_html__( 'Search Results for: %s', 'wot' ), '<span>' . get_search_query() . '</span>' );
-						?>
-					</h1>
-				</div>
-			</div>
+		<header class="page-header mt-4">
+			<h1 class="page-title">
+				<?php
+				/* translators: %s: search query. */
+				printf( esc_html__( 'Search Results for: %s', 'wot' ), '<span>' . get_search_query() . '</span>' );
+				?>
+			</h1>
 		</header><!-- .page-header -->
 
 		<?php

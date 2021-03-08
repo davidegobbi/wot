@@ -6,12 +6,33 @@
 */
 
 
-/*
 function wot_widgets_init() {
   register_sidebar(
     array(
-      'name'          => esc_html__( 'Sidebar', 'wot' ),
-      'id'            => 'sidebar-1',
+      'name'          => esc_html__( 'Topbar colonna 1', 'wot' ),
+      'id'            => 'topbar-col-1',
+      'description'   => esc_html__( 'Add widgets here.', 'wot' ),
+      'before_widget' => '<section id="%1$s" class="widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h2 class="widget-title">',
+      'after_title'   => '</h2>',
+    )
+  );
+  register_sidebar(
+    array(
+      'name'          => esc_html__( 'Footer colonna 1', 'wot' ),
+      'id'            => 'footer-col-1',
+      'description'   => esc_html__( 'Add widgets here.', 'wot' ),
+      'before_widget' => '<section id="%1$s" class="widget %2$s">',
+      'after_widget'  => '</section>',
+      'before_title'  => '<h2 class="widget-title">',
+      'after_title'   => '</h2>',
+    )
+  );
+  register_sidebar(
+    array(
+      'name'          => esc_html__( 'Bottombar colonna 1', 'wot' ),
+      'id'            => 'bottombar-col-1',
       'description'   => esc_html__( 'Add widgets here.', 'wot' ),
       'before_widget' => '<section id="%1$s" class="widget %2$s">',
       'after_widget'  => '</section>',
@@ -21,4 +42,3 @@ function wot_widgets_init() {
   );
 }
 add_action( 'widgets_init', 'wot_widgets_init' );
-*/

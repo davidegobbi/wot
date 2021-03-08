@@ -37,7 +37,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Jetpack infinite scroll
 # Utilities
 	- Accessibility
-	
+
 --------------------------------------------------------------*/
 
 
@@ -119,7 +119,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 .posts-navigation,
 .site-main
 .post-navigation {
-	margin: 0 0 1.5em;
+	margin: 0;
 }
 
 .comment-navigation .nav-links,
@@ -149,7 +149,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+	margin: 0;
 }
 
 .updated:not(.published) {
@@ -159,12 +159,12 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	margin: 0;
 }
 
 .page-links {
 	clear: both;
-	margin: 0 0 1.5em;
+	margin: 0;
 }
 
 /* Comments
@@ -184,7 +184,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 /* Widgets
 --------------------------------------------- */
 .widget {
-	margin: 0 0 1.5em;
+	margin: 0;
 }
 
 .widget select {

@@ -48,7 +48,7 @@
                             "id": ""
                         },
                         "message": "",
-                        "default_value": 0,
+                        "default_value": 1,
                         "ui": 0,
                         "ui_on_text": "",
                         "ui_off_text": ""
@@ -67,7 +67,7 @@
                             "id": ""
                         },
                         "message": "",
-                        "default_value": 0,
+                        "default_value": 1,
                         "ui": 0,
                         "ui_on_text": "",
                         "ui_off_text": ""
@@ -86,7 +86,7 @@
                             "id": ""
                         },
                         "message": "",
-                        "default_value": 0,
+                        "default_value": 1,
                         "ui": 0,
                         "ui_on_text": "",
                         "ui_off_text": ""
@@ -105,7 +105,7 @@
                             "id": ""
                         },
                         "message": "",
-                        "default_value": 0,
+                        "default_value": 1,
                         "ui": 0,
                         "ui_on_text": "",
                         "ui_off_text": ""
@@ -124,7 +124,7 @@
                             "id": ""
                         },
                         "message": "",
-                        "default_value": 0,
+                        "default_value": 1,
                         "ui": 0,
                         "ui_on_text": "",
                         "ui_off_text": ""
@@ -156,6 +156,129 @@
                 "endpoint": 0
             },
             {
+                "key": "field_6045e65d9f784",
+                "label": "Note",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "La Topbar verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_6045e63e17592",
+                "label": "Navbar",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_60436dd452f30",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_6045e6ccffbfe",
+                "label": "Note",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "La Navbar verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_6045e6b1ffbfd",
+                "label": "Breadcrumbs",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_6043760d82cda",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_6045e70b4cb58",
+                "label": "Note",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Le Breadcrumbs verranno mostrate in questa pagina. Nessun altro settaggio richiesto.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_6045e7004cb57",
+                "label": "Footer",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_6043761f82cdb",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
                 "key": "field_60436e0611dc2",
                 "label": "Note",
                 "name": "",
@@ -168,7 +291,48 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "La Topbar  verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
+                "message": "Il Footer verrà mostrato in questa pagina. Nessun altro settaggio richiesto.",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
+                "key": "field_6045e7224cb59",
+                "label": "Bottombar",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_6043762a82cdc",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_6045e7314cb5a",
+                "label": "Note",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "La Bottombar verrà mostrata in questa pagina. Nessun altro settaggio richiesto.",
                 "new_lines": "wpautop",
                 "esc_html": 0
             }

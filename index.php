@@ -33,12 +33,13 @@ get_header();
 
 		endwhile;
 
-		the_posts_navigation();
+		get_template_part( 'template-parts/pagination', 'nav' );
+		get_template_part( 'template-parts/pagination', 'bar' );
 
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
-
+			
 		endif;
 		?>
 

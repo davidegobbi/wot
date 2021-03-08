@@ -8,8 +8,8 @@
 *
 * @package WOT
 */
-
 ?>
+
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -24,45 +24,107 @@
 	<?php wp_body_open(); ?>
 	<div id="page" class="site">
 
+		<?php
+		/*
+		BLOCCHI GLOBALI
+		 */
+		// Inizializzo variabili blocchi globali
+		$activeTopbar = null;
+		$styleTopbar = null;
+		$activeNavbar = null;
+		$styleNavbar = null;
+		$activeHeader = null;
+		$styleHeader = null;
+		$activeBreadcrumbs = null;
+		$styleBreadcrumbs = null;
 
-		<div id="wrapper-navbar">
 
-			<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
+		// Setto attivazione blocchi sulla base delle scelte nei campi ACF
+		if ( have_rows( 'attiva_sezioni' ) ) :
+			while ( have_rows( 'attiva_sezioni' ) ) :
+				the_row();
+				if ( get_sub_field( 'attiva_topbar' ) == 1 ) :
+					$activeTopbar = true;
+					$styleTopbar = get_field( 'topbar_style' );
+				endif;
+				if ( get_sub_field( 'attiva_navbar' ) == 1 ) :
+					$activeNavbar = true;
+					$styleNavbar = get_field( 'navbar_style' );
+				endif;
+				if ( get_sub_field( 'attiva_header' ) == 1 ) :
+					$activeHeader = true;
+					$styleHeader = get_field( 'header_style' );
+				endif;
+				if ( get_sub_field( 'attiva_breadcrumbs' ) == 1 ) :
+					$activeBreadcrumbs = true;
+					$styleBreadcrumbs = get_field( 'breadcrumbs_style' );
+				endif;
+			endwhile;
+		endif;
 
-				<div class="container">
 
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-controls="bs-example-navbar-collapse-1" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'your-theme-slug' ); ?>">
-						<span class="navbar-toggler-icon"></span>
-					</button>
+		/*
+		Forzo attivazione a determinate condizioni
+		*/
+		// se homepage "ultimi articoli"
+		if ( is_home() ) :
+			$activeTopbar = true;
+			$styleTopbar = 'standard';
+			$activeNavbar = true;
+			$styleNavbar = 'standard';
+			$activeHeader = false;
+			$styleHeader = 'standard';
+			$activeBreadcrumbs = false;
+			$styleBreadcrumbs = 'standard';
+		endif;
+		// se single post
+		if ( is_single() ) :
+			$activeTopbar = true;
+			$styleTopbar = 'standard';
+			$activeNavbar = true;
+			$styleNavbar = 'standard';
+			$activeHeader = true;
+			$styleHeader = 'standard';
+			$activeBreadcrumbs = true;
+			$styleBreadcrumbs = 'standard';
+		endif;
+		// se archive post
+		if ( is_archive() ) :
+			$activeTopbar = true;
+			$styleTopbar = 'standard';
+			$activeNavbar = true;
+			$styleNavbar = 'standard';
+			$activeHeader = false;
+			$styleHeader = 'standard';
+			$activeBreadcrumbs = false;
+			$styleBreadcrumbs = 'standard';
+		endif;
+		// se pagina Woocommerce
+		if ( is_woocommerce() ) :
+			$activeTopbar = true;
+			$styleTopbar = 'standard';
+			$activeNavbar = true;
+			$styleNavbar = 'standard';
+			$activeHeader = false;
+			$styleHeader = 'standard';
+			$activeBreadcrumbs = false;
+			$styleBreadcrumbs = 'standard';
+		endif;
 
-					<div class="site-branding">
-						<?php
-						if( function_exists( 'the_custom_logo' ) ) {
-							if(has_custom_logo()) {
-								the_custom_logo();
-							} else {
-								echo '<a href="' . get_site_url() . '">' . get_bloginfo( 'name' ) . '</a>';
-							}
-						}
-						?>
-					</div><!-- .site-branding -->
 
-					<?php
-					wp_nav_menu( array(
-						'theme_location'  => 'menu-primary',
-						'depth'           => 2, // 1 = no dropdowns, 2 = with dropdowns.
-						'container'       => 'div',
-						'container_class' => 'collapse navbar-collapse',
-						'container_id'    => 'bs-example-navbar-collapse-1',
-						'menu_class'      => 'navbar-nav mr-auto',
-						'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
-						'walker'          => new WP_Bootstrap_Navwalker(),
-					) );
-					?>
-
-				</div>
-
-			</nav>
-
-		</div><!-- #wrapper-navbar end -->
+		/*
+		Infine, mostro blocchi richiesti
+		*/
+		if ($activeTopbar == true) {
+			get_template_part( 'template-parts/global-modules/topbar', $styleTopbar );
+		}
+		if ($activeNavbar == true) {
+			get_template_part( 'template-parts/global-modules/navbar', $styleNavbar );
+		}
+		if ($activeHeader == true) {
+			get_template_part( 'template-parts/global-modules/header', $styleHeader );
+		}
+		if ($activeBreadcrumbs == true) {
+			get_template_part( 'template-parts/global-modules/breadcrumbs', $styleBreadcrumbs );
+		}
+		?>

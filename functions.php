@@ -159,17 +159,29 @@ require get_template_directory() . '/inc/comments.php';
 
 
 /*
+Post Navigation
+*/
+require get_template_directory() . '/inc/post-navigation.php';
+
+/* js scripts */
+function wot_enqueue_postnavigation_script() {
+	wp_enqueue_script( 'wot-postnavigation', get_template_directory_uri() . '/js/navigation-post.min.js', array(), _S_VERSION, true );
+}
+add_action('wp_enqueue_scripts','wot_enqueue_postnavigation_script');
+
+
+/*
 WooCommerce
 */
 /* functions */
 require get_template_directory() . '/inc/woocommerce.php';
-add_action( 'wp_enqueue_wc_scripts', 'themeslug_enqueue_style' );
+add_action( 'wp_enqueue_wc_scripts', 'wot_enqueue_style' );
 
 /* js scripts */
-function themeslug_enqueue_script() {
+function wot_enqueue_woocommmerce_script() {
 	wp_enqueue_script( 'wot-woocommerce', get_template_directory_uri() . '/js/woocommerce.min.js', array(), _S_VERSION, true );
 }
-add_action('wp_enqueue_scripts','themeslug_enqueue_script');
+add_action('wp_enqueue_scripts','wot_enqueue_woocommmerce_script');
 
 
 /*
@@ -186,5 +198,5 @@ require get_template_directory() . '/inc/user-doc.php';
 
 /*
 Custom fields
- */
-require get_template_directory() . '/custom-fields/moduli-globali/moduli-globali.php';
+*/
+require get_template_directory() . '/custom-fields/custom-fields.php';

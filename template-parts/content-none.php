@@ -9,18 +9,14 @@
 
 ?>
 
-<section class="no-results not-found container">
-	<div class="row">
-		<div class="col-12">
+<section class="no-results not-found">
 
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'wot' ); ?></h1>
-			</header><!-- .page-header -->
+	<header class="page-header">
+		<h1 class="page-title"><?php esc_html_e( 'Nothing Found', 'wot' ); ?></h1>
+	</header><!-- .page-header -->
 
-			<div class="page-content">
-				
-			</div><!-- .page-content -->
+	<div class="page-content">
 
-		</div><!-- .col-x -->
-	</div><!-- .row -->
+	</div><!-- .page-content -->
+
 </section><!-- .no-results -->
