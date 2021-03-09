@@ -49,34 +49,34 @@ set_query_var( 'pageContainer', $pageContainer );
 
 
 		// Setto attivazione blocchi sulla base delle scelte nei campi ACF
-		if ( have_rows( 'attiva_sezioni' ) ) :
-			while ( have_rows( 'attiva_sezioni' ) ) :
+		if ( have_rows( 'attiva_sezioni' ) ) {
+			while ( have_rows( 'attiva_sezioni' ) ) {
 				the_row();
-				if ( get_sub_field( 'attiva_topbar' ) == 1 ) :
+				if ( get_sub_field( 'attiva_topbar' ) == 1 ) {
 					$activeTopbar = true;
 					$styleTopbar = get_field( 'topbar_style' );
-				endif;
-				if ( get_sub_field( 'attiva_navbar' ) == 1 ) :
+				}
+				if ( get_sub_field( 'attiva_navbar' ) == 1 ) {
 					$activeNavbar = true;
 					$styleNavbar = get_field( 'navbar_style' );
-				endif;
-				if ( get_sub_field( 'attiva_header' ) == 1 ) :
+				}
+				if ( get_sub_field( 'attiva_header' ) == 1 ) {
 					$activeHeader = true;
 					$styleHeader = get_field( 'header_style' );
-				endif;
-				if ( get_sub_field( 'attiva_breadcrumbs' ) == 1 ) :
+				}
+				if ( get_sub_field( 'attiva_breadcrumbs' ) == 1 ) {
 					$activeBreadcrumbs = true;
 					$styleBreadcrumbs = get_field( 'breadcrumbs_style' );
-				endif;
-			endwhile;
-		endif;
+				}
+			}
+		}
 
 
 		/*
 		Forzo attivazione a determinate condizioni
 		*/
 		// se homepage "ultimi articoli"
-		if ( is_home() ) :
+		if ( is_home() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';
 			$activeNavbar = true;
@@ -85,9 +85,9 @@ set_query_var( 'pageContainer', $pageContainer );
 			$styleHeader = 'standard';
 			$activeBreadcrumbs = false;
 			$styleBreadcrumbs = 'standard';
-		endif;
+		};
 		// se single post
-		if ( is_single() ) :
+		if ( is_single() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';
 			$activeNavbar = true;
@@ -96,9 +96,9 @@ set_query_var( 'pageContainer', $pageContainer );
 			$styleHeader = 'standard';
 			$activeBreadcrumbs = true;
 			$styleBreadcrumbs = 'standard';
-		endif;
+		};
 		// se archive post
-		if ( is_archive() ) :
+		if ( is_archive() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';
 			$activeNavbar = true;
@@ -107,18 +107,18 @@ set_query_var( 'pageContainer', $pageContainer );
 			$styleHeader = 'standard';
 			$activeBreadcrumbs = false;
 			$styleBreadcrumbs = 'standard';
-		endif;
+		};
 		// se pagina Woocommerce
-		if ( is_woocommerce() ) :
+		if ( is_woocommerce() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';
 			$activeNavbar = true;
 			$styleNavbar = 'standard';
 			$activeHeader = false;
 			$styleHeader = 'standard';
-			$activeBreadcrumbs = false;
+			$activeBreadcrumbs = true;
 			$styleBreadcrumbs = 'standard';
-		endif;
+		};
 
 
 		/*
