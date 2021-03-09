@@ -38,14 +38,14 @@ set_query_var( 'pageContainer', $pageContainer );
 		BLOCCHI GLOBALI
 		*/
 		// Inizializzo variabili blocchi globali
-		$activeTopbar = null;
-		$styleTopbar = null;
-		$activeNavbar = null;
-		$styleNavbar = null;
-		$activeHeader = null;
-		$styleHeader = null;
-		$activeBreadcrumbs = null;
-		$styleBreadcrumbs = null;
+		$activeTopbar = true;
+		$styleTopbar = 'standard';
+		$activeNavbar = true;
+		$styleNavbar = 'standard';
+		$activeHeader = false;
+		$styleHeader = 'standard';
+		$activeBreadcrumbs = false;
+		$styleBreadcrumbs = 'standard';
 
 
 		// Setto attivazione blocchi sulla base delle scelte nei campi ACF

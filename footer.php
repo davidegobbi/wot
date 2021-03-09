@@ -14,10 +14,10 @@
 BLOCCHI GLOBALI
 */
 // Inizializzo variabili blocchi globali
-$activeFooter = null;
-$styleFooter = null;
-$activeBottombar = null;
-$styleBottombar = null;
+$activeFooter = true;
+$styleFooter = 'standard';
+$activeBottombar = true;
+$styleBottombar = 'standard';
 
 
 // Setto attivazione blocchi sulla base delle scelte nei campi ACF

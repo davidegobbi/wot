@@ -11,31 +11,13 @@ get_header();
 ?>
 
 <main id="primary" class="site-main">
-
-	<div class="container">
+	<div class="container my-5" style="min-height: 70vh;">
 		<div class="row">
 			<div class="col-12">
-
-				<section class="error-404 not-found">
-					<header class="page-header">
-						<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'wot' ); ?></h1>
-					</header><!-- .page-header -->
-
-					<div class="page-content">
-						<p><?php esc_html_e( 'It looks like nothing was found at this location.', 'wot' ); ?></p>
-						<p>
-							<a href="<?php echo site_url(); ?>" class="btn btn-primary">
-								Home
-							</a>
-						</p>
-
-					</div><!-- .page-content -->
-				</section><!-- .error-404 -->
-
-			</div><!-- .col-x -->
-		</div><!-- .row -->
-	</div><!-- .container -->
-
+				<?php get_template_part( 'template-parts/content', '404' ); ?>
+			</div>
+		</div>
+	</div>
 </main><!-- #main -->
 
 <?php
