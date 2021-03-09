@@ -12,7 +12,7 @@ $breadcrumbsList = [
 
 
 /*
-se post
+se post (articoli)
 */
 
 // aggiungo link a index blog
@@ -44,16 +44,16 @@ if ( is_page() && $post->post_parent != 0) {
 
 
 /*
-se Woocommerce
+se Woocommerce (esclusi cart, checkout e account: vedi breadcrumbs-shop.php)
 */
 if ( is_woocommerce() ) {
 
-  // aggiungo link a index shop
+  // aggiungo link a index shop da endpoint WooCommerce
   $breadcrumbsList['Shop'] = wc_get_page_permalink( 'shop' );
 
   /*
   aggiungo link a categoria prodotto
-   */
+  */
 
   // recupero oggetto prodotto corrente
   $product = wc_get_product();
@@ -61,17 +61,19 @@ if ( is_woocommerce() ) {
   // recupero tutte le categorie del prodotto corrente
   $productCategories_object = $product->category_ids;
 
-  foreach ($productCategories_object as $category_id) {
+  if ($productCategories_object) {
+    foreach ($productCategories_object as $category_id) {
 
-    // recupero oggetto categoria corrente
-    $category_object = get_term_by( 'id', $category_id, 'product_cat' );
+      // recupero oggetto categoria corrente
+      $category_object = get_term_by( 'id', $category_id, 'product_cat' );
 
-    // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
-    $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'product_cat_'.$category_object->term_id);
+      // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
+      $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'product_cat_'.$category_object->term_id);
 
-    // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
-    if ( $category_object->parent == 0 && $disableBreadcrumbs == 0 ) {
-      $breadcrumbsList[$category_object->name] = get_category_link($category_object->term_id);
+      // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
+      if ( $category_object->parent == 0 && $disableBreadcrumbs == 0 ) {
+        $breadcrumbsList[$category_object->name] = get_category_link($category_object->term_id);
+      }
     }
   }
 

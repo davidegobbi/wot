@@ -117,7 +117,7 @@ set_query_var( 'pageContainer', $pageContainer );
 			$activeHeader = false;
 			$styleHeader = 'standard';
 			$activeBreadcrumbs = true;
-			$styleBreadcrumbs = 'standard';
+			$styleBreadcrumbs = 'shop';
 		};
 
 
