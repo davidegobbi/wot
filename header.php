@@ -108,7 +108,7 @@ set_query_var( 'pageContainer', $pageContainer );
 			$activeBreadcrumbs = false;
 			$styleBreadcrumbs = 'standard';
 		};
-		// se pagina Woocommerce
+		// se Woocommerce (escluso index shop; esclusi cart, checkout e account: vedi breadcrumbs-shop.php)
 		if ( is_woocommerce() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';

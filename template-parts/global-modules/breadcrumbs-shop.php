@@ -1,11 +1,16 @@
 <?php
-/*
-Solo per pagine ecommerce create da page template WP + shortcode WooCommerce: es. cart, checkout e account.
-Breadcrumbs selezionabile da campo ACF "blocchi globali".
- */
 
 global $post;
-
+if ( is_shop() ) {
+  $isShop = true;
+} else {
+  $isShop = false;
+}
+if ( is_product_category() ) {
+  $isArchive = true;
+} else {
+  $isArchive = false;
+}
 
 /*
 creo array elenco link e comincio aggiungendo la home
@@ -14,42 +19,59 @@ $breadcrumbsList = [
   'home' => site_url(),
 ];
 
-
-// aggiungo link a index shop da endpoint WooCommerce
-$breadcrumbsList['Shop'] = wc_get_page_permalink( 'shop' );
-
 /*
-aggiungo link a categoria prodotto
+HOME
 */
+// aggiungo link a index shop da endpoint WooCommerce
+// se sono già nella pagina shop, metto link '#'
+if ($isShop == true) {
+  $breadcrumbsList['Shop'] = '#';
+} else {
+  $breadcrumbsList['Shop'] = wc_get_page_permalink( 'shop' );
+}
 
-// recupero oggetto prodotto corrente
-$product = wc_get_product();
 
-// recupero tutte le categorie del prodotto corrente
-$productCategories_object = $product->category_ids;
+if ($isArchive == true) {
+  /*
+  ARCHIVE
+  */
+  $currentCategory_object = get_queried_object();
+  $breadcrumbsList[$currentCategory_object->name] = '#';
+} else {
 
-if ($productCategories_object) {
-  foreach ($productCategories_object as $category_id) {
+  /*
+  aggiungo link a categoria prodotto
+  */
 
-    // recupero oggetto categoria corrente
-    $category_object = get_term_by( 'id', $category_id, 'product_cat' );
+  // recupero oggetto prodotto corrente
+  $product = wc_get_product();
 
-    // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
-    $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'product_cat_'.$category_object->term_id);
+  // recupero tutte le categorie del prodotto corrente
+  $productCategories_object = $product->category_ids;
 
-    // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
-    if ( $category_object->parent == 0 && $disableBreadcrumbs == 0 ) {
-      $breadcrumbsList[$category_object->name] = get_category_link($category_object->term_id);
+  if ($productCategories_object) {
+    foreach ($productCategories_object as $category_id) {
+
+      // recupero oggetto categoria corrente
+      $category_object = get_term_by( 'id', $category_id, 'product_cat' );
+
+      // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
+      $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'product_cat_'.$category_object->term_id);
+
+      // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
+      if ( $category_object->parent == 0 && $disableBreadcrumbs == 0 ) {
+        // aggiungo siamo in shop o archive, metto link '#'
+        $breadcrumbsList[$category_object->name] = get_category_link($category_object->term_id);
+      }
     }
   }
 }
 
 
-
 /*
-concludo aggiungendo pagina corrente
+concludo aggiungendo pagina corrente, se non siamo in shop o archive
 */
-if ( !is_home() || !is_archive() ) {
+if ( $isShop == false && $isArchive == false ) {
   $breadcrumbsList[get_the_title()] = '#';
 }
 
