@@ -1,5 +1,15 @@
 <?php
 global $post;
+if ( is_shop() ) {
+  $isShop = true;
+} else {
+  $isShop = false;
+}
+if ( is_archive() ) {
+  $isArchive = true;
+} else {
+  $isArchive = false;
+}
 
 
 /*
@@ -16,18 +26,28 @@ se post (articoli)
 */
 
 // aggiungo link a index blog
-if ( is_single() && get_post_type() == 'post' ) {
+if ( get_post_type() == 'post' || $isArchive == true ) {
   $breadcrumbsList['News'] = site_url() . '/news';
 }
 
-// aggiungo link a categoria post
-$postCategories_object = get_the_category(); // oggetto con tutte le categorie associate
-foreach ($postCategories_object as $category) {
-  // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
-  $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'category_'.$category->term_id);
-  // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
-  if ( $category->category_parent == 0 && $disableBreadcrumbs == 0 ) {
-    $breadcrumbsList[$category->name] = get_category_link($category->term_id);
+
+
+if ($isArchive == true) {
+  /*
+  ARCHIVE
+  */
+  $currentCategory_object = get_queried_object();
+  $breadcrumbsList[$currentCategory_object->name] = '#';
+} else {
+  // aggiungo link a categoria post
+  $postCategories_object = get_the_category(); // oggetto con tutte le categorie associate
+  foreach ($postCategories_object as $category) {
+    // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
+    $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'category_'.$category->term_id);
+    // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
+    if ( $category->category_parent == 0 && $disableBreadcrumbs == 0 ) {
+      $breadcrumbsList[$category->name] = get_category_link($category->term_id);
+    }
   }
 }
 
@@ -83,7 +103,7 @@ if ( is_woocommerce() ) {
 /*
 concludo aggiungendo pagina corrente
 */
-if ( !is_home() || !is_archive() ) {
+if ( $isArchive == false && $isShop == false ) {
   $breadcrumbsList[get_the_title()] = '#';
 }
 

@@ -1,4 +1,7 @@
 <?php
+/*
+Per cart, checkout e account e qualunque pagina alla quale sia stato associato il breadcumbs "shop" tramite campo ACF
+*/
 
 global $post;
 if ( is_shop() ) {

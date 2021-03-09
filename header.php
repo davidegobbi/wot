@@ -105,10 +105,12 @@ set_query_var( 'pageContainer', $pageContainer );
 			$styleNavbar = 'standard';
 			$activeHeader = false;
 			$styleHeader = 'standard';
-			$activeBreadcrumbs = false;
+			$activeBreadcrumbs = true;
 			$styleBreadcrumbs = 'standard';
 		};
-		// se Woocommerce (escluso index shop; esclusi cart, checkout e account: vedi breadcrumbs-shop.php)
+		// se Woocommerce
+		// per index shop, single product e archive (per questi vedi breadcrumbs-standard.php)
+		// esclusi cart, checkout e account (per questi vedi breadcrumbs-shop.php)
 		if ( is_woocommerce() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';
