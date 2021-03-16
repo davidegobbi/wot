@@ -60,13 +60,19 @@ if ( is_archive() ) :
   $activeBottombar = true;
   $styleBottombar = 'standard';
 endif;
-// se pagina Woocommerce
+
+// se Woocommerce
+// per index shop, single product e archive (per questi vedi breadcrumbs-standard.php)
+// esclusi cart, checkout e account (per questi vedi breadcrumbs-shop.php)
+// ELIMINARE COMMENTO SE WOOCOMMERCE INSTALLATO E ATTIVO
+/*
 if ( is_woocommerce() ) :
   $activeFooter = true;
   $styleFooter = 'standard';
   $activeBottombar = true;
   $styleBottombar = 'standard';
 endif;
+*/
 
 
 /*

@@ -111,6 +111,25 @@
                         "ui_off_text": ""
                     },
                     {
+                        "key": "field_604791ad3b659",
+                        "label": "Attiva Sidebar",
+                        "name": "attiva_sidebar",
+                        "type": "true_false",
+                        "instructions": "Non disponibili in template \"Full width\"",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "",
+                        "default_value": 0,
+                        "ui": 0,
+                        "ui_on_text": "",
+                        "ui_off_text": ""
+                    },
+                    {
                         "key": "field_6043761f82cdb",
                         "label": "Attiva Footer",
                         "name": "attiva_footer",
@@ -215,6 +234,23 @@
                 "save_other_choice": 0
             },
             {
+                "key": "field_604793443bc61",
+                "label": "Istruzioni",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Per modificare i contenuti<br>\r\n<b>WP --> Aspetto --> Widget<\/b>",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
                 "key": "field_6045e63e17592",
                 "label": "Navbar",
                 "name": "",
@@ -260,6 +296,23 @@
                 "layout": "vertical",
                 "return_format": "value",
                 "save_other_choice": 0
+            },
+            {
+                "key": "field_604793743bc62",
+                "label": "Istruzioni",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Per modificare i contenuti<br>\r\n<b>WP --> Aspetto --> Menu<\/b>",
+                "new_lines": "wpautop",
+                "esc_html": 0
             },
             {
                 "key": "field_6045eda13fea8",
@@ -346,7 +399,8 @@
                     "id": ""
                 },
                 "choices": {
-                    "standard": "Standard"
+                    "standard": "Standard",
+                    "shop": "Shop"
                 },
                 "allow_null": 0,
                 "other_choice": 0,
@@ -354,6 +408,72 @@
                 "layout": "vertical",
                 "return_format": "value",
                 "save_other_choice": 0
+            },
+            {
+                "key": "field_604791dfde682",
+                "label": "Sidebar",
+                "name": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_604791ad3b659",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_60479208fb084",
+                "label": "Sidebar Style",
+                "name": "sidebar_style",
+                "type": "radio",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "left": "A sinistra",
+                    "right": "A destra",
+                    "both": "Entrambe"
+                },
+                "allow_null": 0,
+                "other_choice": 0,
+                "default_value": "right",
+                "layout": "vertical",
+                "return_format": "value",
+                "save_other_choice": 0
+            },
+            {
+                "key": "field_60479278b1c4f",
+                "label": "Istruzioni",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Per modificare i contenuti<br>\r\n<b>WP --> Aspetto --> Widget<\/b>",
+                "new_lines": "wpautop",
+                "esc_html": 0
             },
             {
                 "key": "field_6045e7004cb57",
@@ -403,6 +523,23 @@
                 "save_other_choice": 0
             },
             {
+                "key": "field_604793933bc63",
+                "label": "Istruzioni",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Per modificare i contenuti<br>\r\n<b>WP --> Aspetto --> Widget<\/b>",
+                "new_lines": "wpautop",
+                "esc_html": 0
+            },
+            {
                 "key": "field_6045e7224cb59",
                 "label": "Bottombar",
                 "name": "",
@@ -448,6 +585,23 @@
                 "layout": "vertical",
                 "return_format": "value",
                 "save_other_choice": 0
+            },
+            {
+                "key": "field_604793a13bc64",
+                "label": "Istruzioni",
+                "name": "",
+                "type": "message",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "Per modificare i contenuti<br>\r\n<b>WP --> Aspetto --> Widget<\/b>",
+                "new_lines": "wpautop",
+                "esc_html": 0
             }
         ],
         "location": [

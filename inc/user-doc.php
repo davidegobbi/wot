@@ -11,5 +11,6 @@ function my_custom_dashboard_widgets() {
 }
 
 function custom_dashboard_help() {
-  echo '<p><a href="'.get_stylesheet_directory_uri().'/user-doc" target="_blank">Vedi documentazione d\'uso</a></p>';
+  echo '<p><a href="'.get_stylesheet_directory_uri().'/documentation/user-doc" target="_blank">Vedi documentazione d\'uso</a></p>';
+  echo '<p><a href="'.get_stylesheet_directory_uri().'/documentation/dev-doc" target="_blank">Vedi documentazione di sviluppo</a></p>';
 }

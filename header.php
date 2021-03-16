@@ -111,6 +111,8 @@ set_query_var( 'pageContainer', $pageContainer );
 		// se Woocommerce
 		// per index shop, single product e archive (per questi vedi breadcrumbs-standard.php)
 		// esclusi cart, checkout e account (per questi vedi breadcrumbs-shop.php)
+		// ELIMINARE COMMENTO SE WOOCOMMERCE INSTALLATO E ATTIVO
+		/*
 		if ( is_woocommerce() ) {
 			$activeTopbar = true;
 			$styleTopbar = 'standard';
@@ -121,6 +123,7 @@ set_query_var( 'pageContainer', $pageContainer );
 			$activeBreadcrumbs = true;
 			$styleBreadcrumbs = 'shop';
 		};
+		*/
 
 
 		/*
