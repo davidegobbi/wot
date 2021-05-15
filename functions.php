@@ -84,6 +84,8 @@ if ( ! function_exists( 'wot_setup' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'wot_setup' );
+require get_template_directory() . '/inc/logo-settings.php';
+
 
 /**
 * Set the content width in pixels, based on the theme's design and stylesheet.
