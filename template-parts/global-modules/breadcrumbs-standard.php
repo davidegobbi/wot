@@ -16,7 +16,7 @@ if ( is_archive() ) {
 creo array elenco link e comincio aggiungendo la home
 */
 $breadcrumbsList = [
-  'home' => site_url(),
+  'Home' => site_url(),
 ];
 
 

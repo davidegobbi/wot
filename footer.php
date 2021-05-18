@@ -24,14 +24,18 @@ $styleBottombar = 'standard';
 if ( have_rows( 'attiva_sezioni' ) ) :
   while ( have_rows( 'attiva_sezioni' ) ) :
     the_row();
-    if ( get_sub_field( 'attiva_footer' ) == 1 ) :
+    if ( get_sub_field( 'attiva_footer' ) == 1 ) {
       $activeFooter = true;
       $styleFooter = get_field( 'footer_style' );
-    endif;
-    if ( get_sub_field( 'attiva_bottombar' ) == 1 ) :
+    } else {
+      $activeFooter = false;
+    }
+    if ( get_sub_field( 'attiva_bottombar' ) == 1 ) {
       $activeBottombar = true;
       $styleBottombar = get_field( 'bottombar_style' );
-    endif;
+    } else {
+      $activeBottombar = false;
+    }
   endwhile;
 endif;
 
@@ -67,10 +71,10 @@ endif;
 // ELIMINARE COMMENTO SE WOOCOMMERCE INSTALLATO E ATTIVO
 /*
 if ( is_woocommerce() ) :
-  $activeFooter = true;
-  $styleFooter = 'standard';
-  $activeBottombar = true;
-  $styleBottombar = 'standard';
+$activeFooter = true;
+$styleFooter = 'standard';
+$activeBottombar = true;
+$styleBottombar = 'standard';
 endif;
 */
 
