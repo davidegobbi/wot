@@ -1,5 +1,9 @@
+<?php
+$topbar_container = get_field( 'topbar_container' );
+?>
+
 <div class="m-topbar1">
-  <div class="container-fluid">
+  <div class="<?php echo $topbar_container; ?>">
     <div class="row">
       <div class="col-12">
         <?php

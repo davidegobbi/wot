@@ -1,5 +1,5 @@
-<div id="wrapper-navbar" class="m-navbar1 -fixedtop -fullscreen"><!-- classes available: -fixedtop, -fullscreen -->
-  <div class="container-fluid">
+<div id="wrapper-navbar" class="m-navbar1"><!-- classes available: -fixedtop, -fullscreen -->
+  <div class="<?php the_field( 'navbar_container' ); ?>">
     <nav class="navbar navbar-expand-lg navbar-dark m-navbar1__nav"><!-- if you change navbar-expand-x class, remember to change mobile breakpoint in stylesheet -->
       <div class="site-branding">
         <?php

@@ -1,4 +1,7 @@
 <?php
+
+$breadcrumb_container = get_field( 'breadcrumb_container' );
+
 global $post;
 if ( is_shop() ) {
   $isShop = true;
@@ -111,27 +114,31 @@ if ( $isArchive == false && $isShop == false ) {
 
 
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <?php
-    // estraggo tutte le voci; rendo cliccabile solo se non ha link '#'
-    foreach($breadcrumbsList as $name => $link) {
-      if ($link != '#') {
-        echo '<li class="breadcrumb-item">';
-      } else {
-        echo '<li class="breadcrumb-item active">';
-      }
-      if ($link != '#') {
-        echo '<a href="' . $link . '">';
-      }
+<div class="m-breadcrumb1">
+  <div class="<?php echo $breadcrumb_container; ?>">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb m-breadcrumb1__list">
+        <?php
+        // estraggo tutte le voci; rendo cliccabile solo se non ha link '#'
+        foreach($breadcrumbsList as $name => $link) {
+          if ($link != '#') {
+            echo '<li class="breadcrumb-item m-breadcrumb1__item">';
+          } else {
+            echo '<li class="breadcrumb-item active m-breadcrumb1__item">';
+          }
+          if ($link != '#') {
+            echo '<a class="m-breadcrumb1__link" href="' . $link . '">';
+          }
 
-      echo $name;
+          echo $name;
 
-      if ($link != '#') {
-        echo '</a>';
-      }
-      echo '</li>';
-    }
-    ?>
-  </ol>
-</nav>
+          if ($link != '#') {
+            echo '</a>';
+          }
+          echo '</li>';
+        }
+        ?>
+      </ol>
+    </nav>
+  </div>
+</div>
