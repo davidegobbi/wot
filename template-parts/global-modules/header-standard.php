@@ -2,22 +2,29 @@
 $idElement = '1';
 $header_container = get_field( 'header_container' );
 
+/*
+Content
+*/
 if ( have_rows( 'header_standard_style' ) ) :
   while ( have_rows( 'header_standard_style' ) ) : the_row();
 
-  if ( have_rows( 'immagine_di_sfondo' ) ) :
-    while ( have_rows( 'immagine_di_sfondo' ) ) : the_row();
+// Background image
+  if ( have_rows( 'header_standard_style_background_image' ) ) :
+    while ( have_rows( 'header_standard_style_background_image' ) ) : the_row();
     $backgroundImage_file = get_sub_field( 'file' );
-    $backgroundImage_allineamento_orizzontale = get_sub_field( 'allineamento_orizzontale' );
-    $backgroundImage_allineamento_verticale = get_sub_field( 'allineamento_verticale' );
-  endwhile; endif;
-  if ( have_rows( 'immagine_di_sfondo_mobile' ) ) :
-    while ( have_rows( 'immagine_di_sfondo_mobile' ) ) : the_row();
-    $backgroundImage_mobile_file = get_sub_field( 'file' );
-    $backgroundImage_mobile_allineamento_orizzontale = get_sub_field( 'allineamento_orizzontale' );
-    $backgroundImage_mobile_allineamento_verticale = get_sub_field( 'allineamento_verticale' );
+    $backgroundImage_horizontal_align = get_sub_field( 'horizontal_align' );
+    $backgroundImage_vertical_align = get_sub_field( 'vertical_align' );
   endwhile; endif;
 
+  // Mobile background image
+  if ( have_rows( 'header_standard_style_background_image_mobile' ) ) :
+    while ( have_rows( 'header_standard_style_background_image_mobile' ) ) : the_row();
+    $backgroundImage_mobile_file = get_sub_field( 'file' );
+    $backgroundImage_mobile_horizontal_align = get_sub_field( 'horizontal_align' );
+    $backgroundImage_mobile_vertical_align = get_sub_field( 'vertical_align' );
+  endwhile; endif;
+
+// Text content
   $header_standard_style_title = get_sub_field( 'header_standard_style_title' );
   $header_standard_style_subtitle = get_sub_field( 'header_standard_style_subtitle' );
   $header_standard_style_description = get_sub_field( 'header_standard_style_description' );
@@ -61,11 +68,12 @@ endif;
             </a>
           <?php endif; ?>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
 
+      </div><!-- .col -->
+    </div><!-- .row -->
+  </div><!-- .container -->
+
+</div><!-- m-header1 -->
 
 <style>
 <?php
@@ -73,7 +81,7 @@ if ( $backgroundImage_file ) :
   ?>
   #header1_<?php echo $idElement; ?> {
     background-image: url('<?php echo esc_url( $backgroundImage_file['url'] ); ?>');
-    background-position: <?php echo $backgroundImage_allineamento_orizzontale . ' ' . $backgroundImage_allineamento_verticale; ?>;
+    background-position: <?php echo $backgroundImage_horizontal_align . ' ' . $backgroundImage_vertical_align; ?>;
   }
   <?php
 endif;
@@ -83,7 +91,7 @@ if ( $backgroundImage_mobile_file ) :
   @media screen and (max-width: 767px) {
     #header1_<?php echo $idElement; ?> {
       background-image: url('<?php echo esc_url( $backgroundImage_mobile_file['url'] ); ?>');
-      background-position: <?php echo $backgroundImage_mobile_allineamento_orizzontale . ' ' . $backgroundImage_mobile_allineamento_verticale; ?>;
+      background-position: <?php echo $backgroundImage_horizontal_align . ' ' . $backgroundImage_vertical_align; ?>;
     }
   }
   <?php
