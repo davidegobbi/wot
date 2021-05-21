@@ -1,5 +1,13 @@
+<?php
+if (get_field( 'bottombar_container' )) {
+  $bottombar_container = get_field( 'bottombar_container' );
+} else {
+  $bottombar_container = 'container-fluid';
+}
+?>
+
 <div class="m-bottombar1">
-  <div class="container-fluid">
+  <div class="<?php echo $bottombar_container; ?>">
     <div class="row">
       <div class="col-12">
         <?php

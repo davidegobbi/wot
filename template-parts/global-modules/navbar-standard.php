@@ -1,5 +1,13 @@
+<?php
+if (get_field( 'navbar_container' )) {
+  $navbar_container = get_field( 'navbar_container' );
+} else {
+  $navbar_container = 'container-fluid';
+}
+?>
+
 <div id="wrapper-navbar" class="m-navbar1"><!-- classes available: -fixedtop, -fullscreen -->
-  <div class="<?php the_field( 'navbar_container' ); ?>">
+  <div class="<?php echo $navbar_container; ?>">
     <nav class="navbar navbar-expand-lg navbar-dark m-navbar1__nav"><!-- if you change navbar-expand-x class, remember to change mobile breakpoint in stylesheet -->
       <div class="site-branding">
         <?php

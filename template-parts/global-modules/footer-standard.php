@@ -1,5 +1,9 @@
 <?php
-$footer_container = get_field( 'footer_container' );
+if (get_field( 'footer_container' )) {
+  $footer_container = get_field( 'footer_container' );
+} else {
+  $footer_container = 'container-fluid';
+}
 ?>
 
 <footer id="colophon" class="site-footer">

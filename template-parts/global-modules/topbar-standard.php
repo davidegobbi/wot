@@ -1,5 +1,9 @@
 <?php
-$topbar_container = get_field( 'topbar_container' );
+if (get_field( 'topbar_container' )) {
+  $topbar_container = get_field( 'topbar_container' );
+} else {
+  $topbar_container = 'container-fluid';
+}
 ?>
 
 <div class="m-topbar1">

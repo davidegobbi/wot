@@ -1,6 +1,9 @@
 <?php
-
-$breadcrumb_container = get_field( 'breadcrumb_container' );
+if (get_field( 'breadcrumb_container' )) {
+  $breadcrumb_container = get_field( 'breadcrumb_container' );
+} else {
+  $breadcrumb_container = 'container-fluid';
+}
 
 global $post;
 if ( is_shop() ) {

@@ -1,7 +1,14 @@
 <?php
 /*
-Per cart, checkout e account e qualunque pagina alla quale sia stato associato il breadcumbs "shop" tramite campo ACF
+For cart, checkout, account page and any page to which the "shop" breadcumbs has been associated via the ACF field
 */
+
+if (get_field( 'breadcrumb_container' )) {
+  $breadcrumb_container = get_field( 'breadcrumb_container' );
+} else {
+  $breadcrumb_container = 'container-fluid';
+}
+
 
 global $post;
 if ( is_shop() ) {
@@ -83,7 +90,7 @@ if ( $isShop == false && $isArchive == false ) {
 
 
 <div class="m-breadcrumb1">
-  <div class="container">
+  <div class="<?php echo $breadcrumb_container; ?>">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb m-breadcrumb1__list">
         <?php
