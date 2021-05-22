@@ -6,10 +6,12 @@ if (get_field( 'breadcrumb_container' )) {
 }
 
 global $post;
-if ( is_shop() ) {
-  $isShop = true;
-} else {
-  $isShop = false;
+if ( class_exists( 'WooCommerce' ) ) {
+  if ( is_shop() ) {
+    $isShop = true;
+  } else {
+    $isShop = false;
+  }
 }
 if ( is_archive() ) {
   $isArchive = true;
@@ -72,45 +74,53 @@ if ( is_page() && $post->post_parent != 0) {
 /*
 se Woocommerce (esclusi cart, checkout e account: vedi breadcrumbs-shop.php)
 */
-if ( is_woocommerce() ) {
+if ( class_exists( 'WooCommerce' ) ) {
+  if ( is_woocommerce() ) {
 
-  // aggiungo link a index shop da endpoint WooCommerce
-  $breadcrumbsList['Shop'] = wc_get_page_permalink( 'shop' );
+    // aggiungo link a index shop da endpoint WooCommerce
+    $breadcrumbsList['Shop'] = wc_get_page_permalink( 'shop' );
 
-  /*
-  aggiungo link a categoria prodotto
-  */
+    /*
+    aggiungo link a categoria prodotto
+    */
 
-  // recupero oggetto prodotto corrente
-  $product = wc_get_product();
+    // recupero oggetto prodotto corrente
+    $product = wc_get_product();
 
-  // recupero tutte le categorie del prodotto corrente
-  $productCategories_object = $product->category_ids;
+    // recupero tutte le categorie del prodotto corrente
+    $productCategories_object = $product->category_ids;
 
-  if ($productCategories_object) {
-    foreach ($productCategories_object as $category_id) {
+    if ($productCategories_object) {
+      foreach ($productCategories_object as $category_id) {
 
-      // recupero oggetto categoria corrente
-      $category_object = get_term_by( 'id', $category_id, 'product_cat' );
+        // recupero oggetto categoria corrente
+        $category_object = get_term_by( 'id', $category_id, 'product_cat' );
 
-      // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
-      $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'product_cat_'.$category_object->term_id);
+        // recupero campo ACF che permette di escludere categoria dalle breadcrumbs
+        $disableBreadcrumbs = get_field('escludi_da_breadcrumbs', 'product_cat_'.$category_object->term_id);
 
-      // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
-      if ( $category_object->parent == 0 && $disableBreadcrumbs == 0 ) {
-        $breadcrumbsList[$category_object->name] = get_category_link($category_object->term_id);
+        // aggiungo se non ha categorie parent e se non è stata disattivata da campo ACF
+        if ( $category_object->parent == 0 && $disableBreadcrumbs == 0 ) {
+          $breadcrumbsList[$category_object->name] = get_category_link($category_object->term_id);
+        }
       }
     }
-  }
 
+  }
 }
 
 
 /*
 concludo aggiungendo pagina corrente
 */
+if ( class_exists( 'WooCommerce' ) ) {
 if ( $isArchive == false && $isShop == false ) {
   $breadcrumbsList[get_the_title()] = '#';
+}
+} else {
+  if ( $isArchive == false ) {
+    $breadcrumbsList[get_the_title()] = '#';
+  }
 }
 
 ?>
