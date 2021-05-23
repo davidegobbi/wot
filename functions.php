@@ -202,3 +202,9 @@ require get_template_directory() . '/inc/user-doc.php';
 Custom fields
 */
 require get_template_directory() . '/custom-fields/custom-fields.php';
+
+
+/*
+ACF - Gutenbger blocks
+*/
+require get_template_directory() . '/inc/acf-blocks.php';

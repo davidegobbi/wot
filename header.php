@@ -30,6 +30,7 @@ set_query_var( 'pageContainer', $pageContainer );
 </head>
 
 <body <?php body_class(); ?>>
+	<div id="wptime-plugin-preloader"></div>
 	<?php wp_body_open(); ?>
 	<div id="page" class="site">
 
