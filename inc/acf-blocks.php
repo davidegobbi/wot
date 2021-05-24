@@ -1,23 +1,51 @@
 <?php
-add_action('acf/init', 'my_acf_init');
-function my_acf_init() {
 
-  // check function exists
+/*
+Add new Gutenberg block category
+*/
+function wot_block_category( $categories, $post ) {
+  return array_merge(
+    array(
+      array(
+        'slug' => 'wot',
+        'title' => __( 'WOT Blocks', 'wot-blocks' ),
+      ),
+    ),
+    $categories
+  );
+}
+add_filter( 'block_categories', 'wot_block_category', 10, 2);
+
+
+/*
+Add ACF Block support
+*/
+add_action('acf/init', 'my_acf_init');
+
+
+/*
+Register blocks
+*/
+function my_acf_init() {
   if( function_exists('acf_register_block') ) {
 
-    // register a testimonial block
     acf_register_block(array(
-      'name'				=> 'card2',
-      'title'				=> __('Card 2'),
+      'name'				=> 'card1',
+      'title'				=> __('Card 1'),
       'description'		=> __(''),
       'render_callback'	=> 'my_acf_block_render_callback',
-      'category'			=> 'formatting',
+      'category'			=> 'wot',
       'icon'				=> 'admin-comments',
       'keywords'			=> array( 'card' ),
     ));
+
   }
 }
 
+
+/*
+Render blocks
+*/
 function my_acf_block_render_callback( $block ) {
   $slug = str_replace('acf/', '', $block['name']);
   if( file_exists( get_theme_file_path("/template-parts/acf-block/content-{$slug}.php") ) ) {
@@ -25,7 +53,10 @@ function my_acf_block_render_callback( $block ) {
   }
 }
 
-// Enqueue scripts & styles if frontend
+
+/*
+Enqueue WOS assets in WP admin (for backend preview)
+*/
 function load_wos_wp_admin_style_scripts(){
 
   wp_enqueue_script( 'bootstrap-scripts', get_stylesheet_directory_uri() . '/wos/lib/bootstrap/js/bootstrap.bundle.js',array( 'jquery' ),'',true);
