@@ -91,7 +91,7 @@ if ( $backgroundImage_mobile_file ) :
   @media screen and (max-width: 767px) {
     #header1_<?php echo $idElement; ?> {
       background-image: url('<?php echo esc_url( $backgroundImage_mobile_file['url'] ); ?>');
-      background-position: <?php echo $backgroundImage_horizontal_align . ' ' . $backgroundImage_vertical_align; ?>;
+      background-position: <?php echo $backgroundImage_mobile_horizontal_align . ' ' . $backgroundImage_mobile_vertical_align; ?>;
     }
   }
   <?php

@@ -1,41 +1,96 @@
-<div id="header1_1" class="m-header1">
+<?php
+$idElement = '1';
+$card1_container = get_field( 'card1_container' );
 
-  <div class="m-header1__overlay"><!-- overlay --></div>
+/*
+Content
+*/
 
-  <div class="container">
+// Background image
+if ( have_rows( 'card1_background_image' ) ) :
+  while ( have_rows( 'card1_background_image' ) ) : the_row();
+  $backgroundImage_file = get_sub_field( 'file' );
+  $backgroundImage_horizontal_align = get_sub_field( 'horizontal_align' );
+  $backgroundImage_vertical_align = get_sub_field( 'vertical_align' );
+endwhile; endif;
+
+// Mobile background image
+if ( have_rows( 'card1_background_image_mobile' ) ) :
+  while ( have_rows( 'card1_background_image_mobile' ) ) : the_row();
+  $backgroundImage_mobile_file = get_sub_field( 'file' );
+  $backgroundImage_mobile_horizontal_align = get_sub_field( 'horizontal_align' );
+  $backgroundImage_mobile_vertical_align = get_sub_field( 'vertical_align' );
+endwhile; endif;
+
+// Text content
+$card1_title = get_field( 'card1_title' );
+$card1_subtitle = get_field( 'card1_subtitle' );
+$card1_description = get_field( 'card1_description' );
+$card1_link = get_field( 'card1_link' );
+
+?>
+
+
+<div id="card1_<?php echo $idElement; ?>" class="m-card1">
+  <div class="m-card1__overlay"></div>
+  <div class="<?php echo $card1_container; ?>">
     <div class="row">
       <div class="col-12">
-
-        <div class="m-header1__content">
-          <h1 class="m-header1__title">
-            LOREM IPSUM
-          </h1>
-          <p class="m-header1__subtitle">
-            Dolor sit amet
-          </p>
-          <p class="m-header1__description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <a href="#" class="btn btn-primary btn-lg m-header1__button">
-            Click me
-          </a>
+        <div class="m-card1__content">
+          <?php if ($card1_title) : ?>
+            <h1 class="m-card1__title">
+              <?php echo $card1_title; ?>
+            </h1>
+            <?php
+          endif;
+          if ($card1_subtitle) :
+            ?>
+            <p class="m-card1__subtitle">
+              <?php echo $card1_subtitle; ?>
+            </p>
+            <?php
+          endif;
+          if ($card1_description) :
+            ?>
+            <p class="m-card1__description">
+              <?php echo $card1_description; ?>
+            </p>
+            <?php
+          endif;
+          if ($card1_link) :
+            ?>
+            <a class="btn btn-primary btn-lg m-card1__button" href="<?php echo esc_url( $card1_link['url'] ); ?>" target="<?php echo esc_attr( $card1_link['target'] ); ?>">
+              <?php echo esc_html( $card1_link['title'] ); ?>
+            </a>
+          <?php endif; ?>
         </div>
 
       </div><!-- .col -->
     </div><!-- .row -->
   </div><!-- .container -->
 
-</div><!-- m-header1 -->
+</div><!-- m-card1 -->
 
 <style>
-  #header1_1 {
-    background-image: url('https://picsum.photos/2000/1000');
-    background-position: center center;
+<?php
+if ( $backgroundImage_file ) :
+  ?>
+  #card1_<?php echo $idElement; ?> {
+    background-image: url('<?php echo esc_url( $backgroundImage_file['url'] ); ?>');
+    background-position: <?php echo $backgroundImage_horizontal_align . ' ' . $backgroundImage_vertical_align; ?>;
   }
+  <?php
+endif;
+
+if ( $backgroundImage_mobile_file ) :
+  ?>
   @media screen and (max-width: 767px) {
-    #header1_1 {
-      background-image: url('https://picsum.photos/1000/1000');
-      background-position: center center;
+    #card1_<?php echo $idElement; ?> {
+      background-image: url('<?php echo esc_url( $backgroundImage_mobile_file['url'] ); ?>');
+      background-position: <?php echo $backgroundImage_mobile_horizontal_align . ' ' . $backgroundImage_mobile_vertical_align; ?>;
     }
   }
+  <?php
+endif;
+?>
 </style>
