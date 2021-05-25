@@ -205,6 +205,6 @@ require get_template_directory() . '/custom-fields/custom-fields.php';
 
 
 /*
-ACF - Gutenbger blocks
+ACF - Gutenberg blocks
 */
 require get_template_directory() . '/inc/acf-blocks.php';

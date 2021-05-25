@@ -411,6 +411,50 @@
                 "save_other_choice": 0
             },
             {
+                "key": "field_60acc48be3349",
+                "label": "Attiva overlay",
+                "name": "header_standard_style_activate_overlay",
+                "type": "true_false",
+                "instructions": "Attiva una maschera di overlay sopra l'immagine per rendere il testo più leggibile",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "message": "",
+                "default_value": 1,
+                "ui": 0,
+                "ui_on_text": "",
+                "ui_off_text": ""
+            },
+            {
+                "key": "field_60acc4a6e334a",
+                "label": "Colore overlay",
+                "name": "header_standard_style_overlay_color",
+                "type": "extended-color-picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": [
+                    [
+                        {
+                            "field": "field_60acc48be3349",
+                            "operator": "==",
+                            "value": "1"
+                        }
+                    ]
+                ],
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "rgba(33, 37, 41, 0.5)",
+                "color_palette": "",
+                "hide_palette": 0
+            },
+            {
                 "key": "field_60463b53bb3ca",
                 "label": "Header Style",
                 "name": "header_style",

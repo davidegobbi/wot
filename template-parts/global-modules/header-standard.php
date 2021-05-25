@@ -1,6 +1,10 @@
 <?php
 $idElement = '1';
 $header_container = get_field( 'header_container' );
+if ( get_field( 'header_standard_style_activate_overlay' ) == 1 ) {
+  $header_standard_style_overlay = true;
+}
+$header_standard_style_overlay_color = get_field( 'header_standard_style_overlay_color' );
 
 /*
 Content
@@ -8,7 +12,7 @@ Content
 if ( have_rows( 'header_standard_style' ) ) :
   while ( have_rows( 'header_standard_style' ) ) : the_row();
 
-// Background image
+  // Background image
   if ( have_rows( 'header_standard_style_background_image' ) ) :
     while ( have_rows( 'header_standard_style_background_image' ) ) : the_row();
     $backgroundImage_file = get_sub_field( 'file' );
@@ -24,7 +28,7 @@ if ( have_rows( 'header_standard_style' ) ) :
     $backgroundImage_mobile_vertical_align = get_sub_field( 'vertical_align' );
   endwhile; endif;
 
-// Text content
+  // Text content
   $header_standard_style_title = get_sub_field( 'header_standard_style_title' );
   $header_standard_style_subtitle = get_sub_field( 'header_standard_style_subtitle' );
   $header_standard_style_description = get_sub_field( 'header_standard_style_description' );
@@ -36,7 +40,16 @@ endif;
 
 
 <div id="header1_<?php echo $idElement; ?>" class="m-header1">
-  <div class="m-header1__overlay"></div>
+
+  <?php if ($header_standard_style_overlay == true) : ?>
+    <div class="m-header1__overlay"></div>
+    <style>
+    .m-header1__overlay {
+      background-color: <?php echo $header_standard_style_overlay_color; ?>
+    }
+    </style>
+  <?php endif; ?>
+
   <div class="<?php echo $header_container; ?>">
     <div class="row">
       <div class="col-12">

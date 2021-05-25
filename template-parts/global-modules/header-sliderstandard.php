@@ -4,6 +4,10 @@
 
       <?php
       $header_container = get_field( 'header_container' );
+      if ( get_field( 'header_standard_style_activate_overlay' ) == 1 ) {
+        $header_standard_style_overlay = true;
+      }
+      $header_standard_style_overlay_color = get_field( 'header_standard_style_overlay_color' );
       $idElement = 0;
       if ( have_rows( 'slider_standard_style' ) ) :
         while ( have_rows( 'slider_standard_style' ) ) : the_row();
@@ -19,32 +23,34 @@
           */
 
           // Background image
-            if ( have_rows( 'slider_standard_style_background_image' ) ) :
-              while ( have_rows( 'slider_standard_style_background_image' ) ) : the_row();
-              $backgroundImage_file = get_sub_field( 'file' );
-              $backgroundImage_horizontal_align = get_sub_field( 'horizontal_align' );
-              $backgroundImage_vertical_align = get_sub_field( 'vertical_align' );
-            endwhile; endif;
+          if ( have_rows( 'slider_standard_style_background_image' ) ) :
+            while ( have_rows( 'slider_standard_style_background_image' ) ) : the_row();
+            $backgroundImage_file = get_sub_field( 'file' );
+            $backgroundImage_horizontal_align = get_sub_field( 'horizontal_align' );
+            $backgroundImage_vertical_align = get_sub_field( 'vertical_align' );
+          endwhile; endif;
 
-            // Mobile background image
-            if ( have_rows( 'slider_standard_style_background_image_mobile' ) ) :
-              while ( have_rows( 'slider_standard_style_background_image_mobile' ) ) : the_row();
-              $backgroundImage_mobile_file = get_sub_field( 'file' );
-              $backgroundImage_mobile_horizontal_align = get_sub_field( 'horizontal_align' );
-              $backgroundImage_mobile_vertical_align = get_sub_field( 'vertical_align' );
-            endwhile; endif;
+          // Mobile background image
+          if ( have_rows( 'slider_standard_style_background_image_mobile' ) ) :
+            while ( have_rows( 'slider_standard_style_background_image_mobile' ) ) : the_row();
+            $backgroundImage_mobile_file = get_sub_field( 'file' );
+            $backgroundImage_mobile_horizontal_align = get_sub_field( 'horizontal_align' );
+            $backgroundImage_mobile_vertical_align = get_sub_field( 'vertical_align' );
+          endwhile; endif;
 
           // Text content
-            $slider_standard_style_title = get_sub_field( 'slider_standard_style_title' );
-            $slider_standard_style_subtitle = get_sub_field( 'slider_standard_style_subtitle' );
-            $slider_standard_style_description = get_sub_field( 'slider_standard_style_description' );
-            $slider_standard_style_link = get_sub_field( 'slider_standard_style_link' );
+          $slider_standard_style_title = get_sub_field( 'slider_standard_style_title' );
+          $slider_standard_style_subtitle = get_sub_field( 'slider_standard_style_subtitle' );
+          $slider_standard_style_description = get_sub_field( 'slider_standard_style_description' );
+          $slider_standard_style_link = get_sub_field( 'slider_standard_style_link' );
 
           ?>
 
 
           <div id="header1_<?php echo $idElement; ?>" class="m-header1">
-            <div class="m-header1__overlay"></div>
+            <?php if ($header_standard_style_overlay == true) : ?>
+              <div class="m-header1__overlay"></div>
+            <?php endif; ?>
             <div class="<?php echo $header_container; ?>">
               <div class="row">
                 <div class="col-12">
@@ -112,7 +118,15 @@
 
         <?php
       endwhile; endif;
-      ?>
+
+      if ($header_standard_style_overlay == true) :
+        ?>
+        <style>
+        .m-header1__overlay {
+          background-color: <?php echo $header_standard_style_overlay_color; ?>
+        }
+        </style>
+      <?php endif; ?>
 
     </ul>
   </div>

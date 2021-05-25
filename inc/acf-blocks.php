@@ -1,6 +1,17 @@
 <?php
 
 /*
+Remove embedded stylesheet for Gutenberg editor on the back end
+https://stackoverflow.com/questions/54203925/remove-embedded-stylesheet-for-gutenberg-editor-on-the-back-end
+*/
+add_filter( 'block_editor_settings' , 'remove_guten_wrapper_styles' );
+function remove_guten_wrapper_styles( $settings ) {
+  unset($settings['styles'][0]);
+  return $settings;
+}
+
+
+/*
 Add new Gutenberg block category
 */
 function wot_block_category( $categories, $post ) {
