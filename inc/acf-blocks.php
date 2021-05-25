@@ -1,17 +1,6 @@
 <?php
 
 /*
-Remove embedded stylesheet for Gutenberg editor on the back end
-https://stackoverflow.com/questions/54203925/remove-embedded-stylesheet-for-gutenberg-editor-on-the-back-end
-*/
-add_filter( 'block_editor_settings' , 'remove_guten_wrapper_styles' );
-function remove_guten_wrapper_styles( $settings ) {
-  unset($settings['styles'][0]);
-  return $settings;
-}
-
-
-/*
 Add new Gutenberg block category
 */
 function wot_block_category( $categories, $post ) {
@@ -66,9 +55,20 @@ function my_acf_block_render_callback( $block ) {
 
 
 /*
+Remove embedded stylesheet for Gutenberg editor on the back end
+https://stackoverflow.com/questions/54203925/remove-embedded-stylesheet-for-gutenberg-editor-on-the-back-end
+*/
+add_filter( 'block_editor_settings' , 'remove_guten_wrapper_styles' );
+function remove_guten_wrapper_styles( $settings ) {
+  unset($settings['styles'][0]);
+  return $settings;
+}
+
+
+/*
 Enqueue WOS assets in WP admin (for backend preview)
 */
-function load_wos_wp_admin_style_scripts(){
+function load_editor_wos_style_scripts(){
 
   wp_enqueue_script( 'bootstrap-scripts', get_stylesheet_directory_uri() . '/wos/lib/bootstrap/js/bootstrap.bundle.js',array( 'jquery' ),'',true);
   wp_enqueue_script( 'libraries', get_stylesheet_directory_uri() . '/wos/dist/js/libraries.min.js',array( 'jquery' ),'',true);
@@ -80,5 +80,5 @@ function load_wos_wp_admin_style_scripts(){
   wp_enqueue_style( 'wos_libraries_css' );
 
 }
-add_action('admin_enqueue_scripts', 'load_wos_wp_admin_style_scripts');
+add_action('enqueue_block_editor_assets', 'load_editor_wos_style_scripts');
 ?>

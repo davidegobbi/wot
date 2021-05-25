@@ -29,7 +29,7 @@ set_query_var( 'pageContainer', $pageContainer );
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class('wos-style'); ?>>
 	<div id="wptime-plugin-preloader"></div>
 	<?php wp_body_open(); ?>
 	<div id="page" class="site">

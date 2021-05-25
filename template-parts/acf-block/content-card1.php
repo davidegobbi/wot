@@ -1,6 +1,10 @@
 <?php
-$idElement = '1';
+$idElement = rand(1, 99999999); // generate random number to uniquely identify the card
 $card1_container = get_field( 'card1_container' );
+if ( get_field( 'card1_activate_overlay' ) == 1 ) {
+  $card1_overlay = true;
+}
+$card1_overlay_color = get_field( 'card1_overlay_color' );
 
 /*
 Content
@@ -32,7 +36,16 @@ $card1_link = get_field( 'card1_link' );
 
 
 <div id="card1_<?php echo $idElement; ?>" class="m-card1">
-  <div class="m-card1__overlay"></div>
+
+  <?php if ($card1_overlay == true) : ?>
+    <div class="m-card1__overlay"></div>
+    <style>
+    #card1_<?php echo $idElement; ?> .m-card1__overlay {
+      background-color: <?php echo $card1_overlay_color; ?>
+    }
+    </style>
+  <?php endif; ?>
+
   <div class="<?php echo $card1_container; ?>">
     <div class="row">
       <div class="col-12">
