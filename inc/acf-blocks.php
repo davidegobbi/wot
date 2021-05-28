@@ -37,7 +37,32 @@ function my_acf_init() {
       'category'			=> 'wot',
       'icon'				=> 'admin-comments',
       'keywords'			=> array( 'card' ),
+      'example'  => array(
+        'attributes' => array(
+          'mode' => 'preview',
+          'data' => array(
+            //card1_container
+            "field_60abca180a5b6" => "container",
+            //card1_activate_overlay
+            "field_60ace92b44089" => true,
+            //card1_overlay_color
+            "field_60ace94f4408a" => "rgba(33, 37, 41, 0.5)",
+            //card1_title
+            "field_60abcace731e8" => "TITOLO",
+            //card1_subtitle
+            "field_60abcadb731e9" => "Sottotitolo",
+            //card1_description
+            "field_60abcaec731ea" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            //card1_link
+            "field_60abcafd731eb" => array(
+              'url' => '#',
+              'title' => 'Click here'
+            ),
+          )
+        )
+      )
     ));
+
 
   }
 }
