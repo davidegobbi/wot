@@ -3,6 +3,8 @@ $idElement = '1';
 $header_container = get_field( 'header_container' );
 if ( get_field( 'header_standard_style_activate_overlay' ) == 1 ) {
   $header_standard_style_overlay = true;
+} else {
+  $header_standard_style_overlay = false;
 }
 $header_standard_style_overlay_color = get_field( 'header_standard_style_overlay_color' );
 
