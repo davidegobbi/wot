@@ -9,8 +9,8 @@
       }
       $slider1_overlay_color = get_field( 'slider1_overlay_color' );
       $idElement = 0;
-      if ( have_rows( 'slider_standard_style' ) ) :
-        while ( have_rows( 'slider_standard_style' ) ) : the_row();
+      if ( have_rows( 'slider1_repeater' ) ) :
+        while ( have_rows( 'slider1_repeater' ) ) : the_row();
         $idElement++;
         ?>
 
@@ -23,26 +23,26 @@
           */
 
           // Background image
-          if ( have_rows( 'slider_standard_style_background_image' ) ) :
-            while ( have_rows( 'slider_standard_style_background_image' ) ) : the_row();
+          if ( have_rows( 'slider1_background_image' ) ) :
+            while ( have_rows( 'slider1_background_image' ) ) : the_row();
             $backgroundImage_file = get_sub_field( 'file' );
             $backgroundImage_horizontal_align = get_sub_field( 'horizontal_align' );
             $backgroundImage_vertical_align = get_sub_field( 'vertical_align' );
           endwhile; endif;
 
           // Mobile background image
-          if ( have_rows( 'slider_standard_style_background_image_mobile' ) ) :
-            while ( have_rows( 'slider_standard_style_background_image_mobile' ) ) : the_row();
+          if ( have_rows( 'slider1_background_image_mobile' ) ) :
+            while ( have_rows( 'slider1_background_image_mobile' ) ) : the_row();
             $backgroundImage_mobile_file = get_sub_field( 'file' );
             $backgroundImage_mobile_horizontal_align = get_sub_field( 'horizontal_align' );
             $backgroundImage_mobile_vertical_align = get_sub_field( 'vertical_align' );
           endwhile; endif;
 
           // Text content
-          $slider_standard_style_title = get_sub_field( 'slider_standard_style_title' );
-          $slider_standard_style_subtitle = get_sub_field( 'slider_standard_style_subtitle' );
-          $slider_standard_style_description = get_sub_field( 'slider_standard_style_description' );
-          $slider_standard_style_link = get_sub_field( 'slider_standard_style_link' );
+          $slider1_title = get_sub_field( 'slider1_title' );
+          $slider1_subtitle = get_sub_field( 'slider1_subtitle' );
+          $slider1_description = get_sub_field( 'slider1_description' );
+          $slider1_link = get_sub_field( 'slider1_link' );
 
           ?>
 
@@ -55,30 +55,30 @@
               <div class="row">
                 <div class="col-12">
                   <div class="m-slider1__content">
-                    <?php if ($slider_standard_style_title) : ?>
+                    <?php if ($slider1_title) : ?>
                       <h1 class="m-slider1__title">
-                        <?php echo $slider_standard_style_title; ?>
+                        <?php echo $slider1_title; ?>
                       </h1>
                       <?php
                     endif;
-                    if ($slider_standard_style_subtitle) :
+                    if ($slider1_subtitle) :
                       ?>
                       <p class="m-slider1__subtitle">
-                        <?php echo $slider_standard_style_subtitle; ?>
+                        <?php echo $slider1_subtitle; ?>
                       </p>
                       <?php
                     endif;
-                    if ($slider_standard_style_description) :
+                    if ($slider1_description) :
                       ?>
                       <p class="m-slider1__description">
-                        <?php echo $slider_standard_style_description; ?>
+                        <?php echo $slider1_description; ?>
                       </p>
                       <?php
                     endif;
-                    if ($slider_standard_style_link) :
+                    if ($slider1_link) :
                       ?>
-                      <a class="btn btn-primary btn-lg m-slider1__button" href="<?php echo esc_url( $slider_standard_style_link['url'] ); ?>" target="<?php echo esc_attr( $slider_standard_style_link['target'] ); ?>">
-                        <?php echo esc_html( $slider_standard_style_link['title'] ); ?>
+                      <a class="btn btn-primary btn-lg m-slider1__button" href="<?php echo esc_url( $slider1_link['url'] ); ?>" target="<?php echo esc_attr( $slider1_link['target'] ); ?>">
+                        <?php echo esc_html( $slider1_link['title'] ); ?>
                       </a>
                     <?php endif; ?>
                   </div>
