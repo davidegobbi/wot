@@ -1,0 +1,33 @@
+// compileOnSave: false
+
+
+/*
+Settings
+*/
+
+// Appearance
+$topbar1_backgroundColor : $black; // background-color
+$topbar1_color : $white; // text color
+$topbar1_fontSize : $font-size-base; // font-size
+
+// Responsive (hide in small display resolutions)
+$topbar1_mobileDisplay : 'block'; // show->'block', hide->'none'
+$topbar1_mobileBreakpoint : 'lg'; // choose the breakpoint below which to apply the display setting set above: xs, sm, md, lg, xl
+
+
+/*
+Stylesheet
+*/
+.m-topbar1 {
+  background-color: $topbar1_backgroundColor;
+  color: $topbar1_color;
+  font-size: $topbar1_fontSize;
+  @include media-breakpoint-down($topbar1_mobileBreakpoint) {
+    display: $topbar1_mobileDisplay;
+  }
+  p {
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+}
