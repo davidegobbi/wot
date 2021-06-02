@@ -18,7 +18,7 @@ add_filter( 'block_categories', 'wot_block_category', 10, 2);
 
 
 /*
-Add ACF Block support
+ACF Block initialization
 */
 add_action('acf/init', 'my_acf_init');
 
@@ -29,11 +29,17 @@ Register blocks
 function my_acf_init() {
   if( function_exists('acf_register_block') ) {
 
-    require get_template_directory() . '/wos/templates/3_modules/card1/acf/functions.php';
-    require get_template_directory() . '/wos/templates/3_modules/slider1/acf/functions.php';
+    require get_template_directory() . '/wos/templates/3_modules/card2/wp/acf/register-card2.php';
+    require get_template_directory() . '/wos/templates/3_modules/slider1/wp/acf/register-slider1.php';
 
   }
 }
+
+/*
+Register ACF block fields
+*/
+require get_template_directory() . '/wos/templates/3_modules/card2/wp/acf/acf-card2.php';
+require get_template_directory() . '/wos/templates/3_modules/slider1/wp/acf/acf-slider1.php';
 
 
 /*
