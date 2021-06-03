@@ -29,6 +29,7 @@ Register blocks
 function my_acf_init() {
   if( function_exists('acf_register_block') ) {
 
+    require get_template_directory() . '/wos/templates/3_modules/card1/wp/acf/register-card1.php';
     require get_template_directory() . '/wos/templates/3_modules/card2/wp/acf/register-card2.php';
     require get_template_directory() . '/wos/templates/3_modules/slider1/wp/acf/register-slider1.php';
 
