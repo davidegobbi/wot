@@ -32,6 +32,7 @@ function my_acf_init() {
     require get_template_directory() . '/wos/templates/3_modules/card1/wp/acf/register-card1.php';
     require get_template_directory() . '/wos/templates/3_modules/card2/wp/acf/register-card2.php';
     require get_template_directory() . '/wos/templates/3_modules/slider1/wp/acf/register-slider1.php';
+    require get_template_directory() . '/wos/templates/3_modules/spacer1/wp/acf/register-spacer1.php';
 
   }
 }
@@ -39,8 +40,10 @@ function my_acf_init() {
 /*
 Register ACF block fields
 */
+require get_template_directory() . '/wos/templates/3_modules/card1/wp/acf/acf-card1.php';
 require get_template_directory() . '/wos/templates/3_modules/card2/wp/acf/acf-card2.php';
 require get_template_directory() . '/wos/templates/3_modules/slider1/wp/acf/acf-slider1.php';
+require get_template_directory() . '/wos/templates/3_modules/spacer1/wp/acf/acf-spacer1.php';
 
 
 /*
