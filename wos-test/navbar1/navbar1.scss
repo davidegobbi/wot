@@ -1,0 +1,69 @@
+// compileOnSave: false
+
+/*
+Settings
+*/
+
+// Appearance
+$navbar1_backgroundColor: grey; // background-color
+$navbar1_logo_maxHeight: 60px; // logo max-height
+$navbar1_toggler_icon: '../imgs/icon-hamburger.svg'; // menu toggler icon
+
+// Responsive
+$navbar1_mobileBreakpoint: ''; // mobile breakpoint
+
+/*
+TODO: Set Bootstrap variables in wos/templates/0_bootstrap/_variables.scss
+*/
+
+
+/*
+Stylesheet
+*/
+.m-navbar1 {
+  max-height: 100%;
+  min-height: 0;
+  transition: all .3s ease;
+  background-color: $navbar1_backgroundColor;
+  &.-fixedtop {
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1030;
+  }
+  &.-transparent {
+    nav {
+      z-index: 10;
+    }
+    &+main#primary {
+      margin-top: -60px;
+    }
+  }
+  &.-mobileFullscreen {
+
+  }
+  &__nav {
+    flex-wrap: wrap;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .navbar-nav {
+    flex-wrap: wrap;
+  }
+  .navbar-brand {
+    img {
+      max-height: $navbar1_logo_maxHeight;
+      width: auto;
+    }
+  }
+  .dropdown-menu {
+    @include media-breakpoint-up($navbar1_mobileBreakpoint) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .navbar-toggler-icon {
+    background-image: url($navbar1_toggler_icon);
+  }
+}
