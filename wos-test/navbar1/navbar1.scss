@@ -23,25 +23,26 @@ Stylesheet
 .m-navbar1 {
   max-height: 100%;
   min-height: 0;
-  transition: all .3s ease;
-  background-color: $navbar1_backgroundColor;
   &.-fixedtop {
+    transition: all .2s ease;
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 1030;
+    overflow-y: auto;
   }
   &.-transparent {
+    background-color: rgba($navbar1_backgroundColor, 0);
     nav {
       z-index: 10;
-    }
-    &+main#primary {
-      margin-top: -60px;
     }
   }
   &.-mobileFullscreen {
 
+  }
+  &.-bgColor {
+    background-color: rgba($navbar1_backgroundColor, 1);
   }
   &__nav {
     flex-wrap: wrap;

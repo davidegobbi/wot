@@ -6,9 +6,9 @@ if (get_field( 'navbar_container' )) {
 }
 ?>
 
-<div id="wrapper-navbar" class="m-navbar1 -fullscreen -transparent"><!-- classes available: -fixedtop, -fullscreen, -transparent -->
+<div id="wrapper-navbar" class="m-navbar1 -transparent"><!-- classes available: -fullscreen, -transparent, -fixedtop -->
   <div class="<?php echo $navbar_container; ?>">
-    <nav class="navbar  navbar-dark m-navbar1__nav"><!-- if you change navbar-expand-x class, remember to change mobile breakpoint in stylesheet -->
+    <nav class="navbar navbar-dark m-navbar1__nav"><!-- if you change navbar-expand-x class, remember to change mobile breakpoint in stylesheet -->
       <div class="site-branding">
         <?php
         if( function_exists( 'the_custom_logo' ) ) {
