@@ -23,8 +23,8 @@ Stylesheet
 .m-navbar1 {
   max-height: 100%;
   min-height: 0;
+  transition: min-height .5s ease, margin-top .3s ease, background-color .3s ease;
   &.-fixedtop {
-    transition: all .2s ease;
     left: 0;
     position: fixed;
     right: 0;
@@ -33,16 +33,16 @@ Stylesheet
     overflow-y: auto;
   }
   &.-transparent {
-    background-color: rgba($navbar1_backgroundColor, 0);
+    background-color: trasparent;
     nav {
       z-index: 10;
     }
   }
-  &.-mobileFullscreen {
+  &.-fullscreen {
 
   }
   &.-bgColor {
-    background-color: rgba($navbar1_backgroundColor, 1);
+    background-color: $navbar1_backgroundColor;
   }
   &__nav {
     flex-wrap: wrap;

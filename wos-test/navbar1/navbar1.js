@@ -1,25 +1,26 @@
 if ($('.m-navbar1').length) {
 
-  var navbar_height_closed = $('.m-navbar1').height();
-  var navbar_paddingBottom_closed = $('.m-navbar1').css('padding-bottom');
 
   /*
-  Status
+  Initial appearance
   */
 
-  // WpAdminBar
-  if ( $('#wpadminbar').length ) {
-    var hasAdminBar = true;
-  } else {
-    var hasAdminBar = false;
+  if ( $('#wpadminbar' ).length ) {
+    var adminbar_height_initial = parseInt( $('#wpadminbar' ).css('height') );
   }
-  // Topbar
-  if ( $('div[class^="m-topbar"], div[class*=" m-topbar"]').length ) {
-    var hasTopbar = true;
-  } else {
-    var hasTopbar = false;
+  if ( $('div[class^="m-topbar"], div[class*=" m-topbar"]' ).length ) {
+    var topbar_paddingRight_initial = parseInt( $('div[class^="m-topbar"], div[class*=" m-topbar"]' ).css('padding-right') );
   }
-  // FixedtophasFixedTop
+  if ( $('div[class^="m-header"], div[class*=" m-header"]' ).length ) {
+    var header_paddingTop_initial = parseInt( $('div[class^="m-header"], div[class*=" m-header"]' ).css('padding-top') );
+  }
+  var navbar_height_initial = $('.m-navbar1').height();
+  var navbar_paddingBottom_initial = $('.m-navbar1').css('padding-bottom');
+  var main_paddingTop_initial = parseInt( $('main#primary.site-main').css('padding-top') );
+  var main_paddingRight_initial = parseInt( $('main#primary.site-main').css('padding-right') );
+
+
+  // Fixedtop
   if ( $('.m-navbar1.-fixedtop').length ) {
     var hasFixedTop = true;
   } else {
@@ -39,12 +40,35 @@ if ($('.m-navbar1').length) {
   }
 
 
+  /*
+  Context
+  */
+
+  // WpAdminBar
+  if ( $('#wpadminbar').length ) {
+    var hasAdminBar = true;
+  } else {
+    var hasAdminBar = false;
+  }
+  // Topbar
+  if ( $('div[class^="m-topbar"], div[class*=" m-topbar"]').length ) {
+    var hasTopbar = true;
+  } else {
+    var hasTopbar = false;
+  }
+
+
 
   /*
   Functions
   */
 
-  // Top Offset
+
+  /**
+  * @title: Navbar top offset
+  * @description: Calcolo il top offset della navbar nel caso siano presenti Wp * * Admin Bar e Topbar
+  * @return: {integer} navbarOffsetTop
+  **/
   function fn_navbarOffsetTop() {
 
     /*
@@ -65,10 +89,8 @@ if ($('.m-navbar1').length) {
       var topbar_Height = 0;
     }
 
-    /*
-    top offset
-    */
-    navbarOffsetTop = wpadminbar_Height + topbar_Height
+    // calculate
+    navbarOffsetTop = wpadminbar_Height + topbar_Height;
 
     return navbarOffsetTop;
 
@@ -76,47 +98,106 @@ if ($('.m-navbar1').length) {
 
 
 
-  // Fixedtop
+  /**
+  * @title Navbar margin-top
+  * @return Applico un margin top alla navbar
+  **/
+  function fn_navbarMarginTop( marginTop_value ) {
+    if ( marginTop_value ) {
+      $('.m-navbar1').css('margin-top', marginTop_value);
+    } else {
+      $('.m-navbar1').css('margin-top', '0');
+    }
+  }
+
+
+
+  /**
+  * @title Main margin top
+  * @return Applico un margin top alla navbar
+  **/
+  function fn_mainMarginTop( marginTop_value ) {
+    if ( marginTop_value ) {
+      $('main#primary.site-main')
+      .css('margin-top', marginTop_value)
+      .css('transition', 'margin-top .3s ease');
+    } else {
+      $('main#primary.site-main').css('margin-top', '0');
+    }
+  }
+
+
+
+  /**
+  * @title Main padding top
+  * @return Applico applico un padding top all'header se esiste oppure al main
+  **/
+  function fn_mainPaddingTop() {
+
+    if( $('div[class^="m-header"], div[class*=" m-header"]').length ) {
+
+      /*
+      to header if exists
+      */
+
+      // aggiungo l'altezza della navbar al padding-top iniziale dell'header
+      var header_paddingTop_new = header_paddingTop_initial + navbar_height_initial;
+
+      // applico il nuovo padding-top all'header
+      $('div[class^="m-header"], div[class*=" m-header"]').first().css('padding-top', header_paddingTop_new + 'px' );
+
+    } else {
+
+      /*
+      else to main page
+      */
+
+      // aggiungo l'altezza della navbar padding-top iniziale del main page
+      var main_paddingTop_new = main_paddingTop_initial + navbar_height_initial;
+
+      $('main#primary.site-main').css('padding-top', main_paddingTop_new + 'px' );
+
+    }
+
+  }
+
+
+
+  /**
+  * @title Navbar fixed top
+  * @return Applico lo stile "fixed top" alla navbar
+  **/
   function fn_navbarFixedTop() {
 
-    // add navbar margin top
-    $('.m-navbar1').css('margin-top', fn_navbarOffsetTop());
+    // navbar margin-top
+    fn_navbarMarginTop( fn_navbarOffsetTop() );
 
-    // add main padding top
-    $('main.site-main')
-    .css('transition', 'padding-top .3s ease')
-    .css('padding-top', navbar_height_closed);
+    // main margin-top se non è transparent
+    if ( hasTransparent == false ) {
+      fn_mainMarginTop( navbar_height_initial );
+    }
 
-  } // navbarFixedTop
+  }
 
 
 
-  // Transparent
+  /**
+  * @title Navbar transparent
+  * @return Applico lo stile "trasparent" alla navbar
+  **/
   function fn_navbarTransparent() {
 
     // hide collapse (close menu)
     $('#navbarSupportedContent').collapse('hide');
 
-    // restore navbar margin-top
-    $('.m-navbar1').css('margin-top', '0');
-
-    // navbar_Height
-    var navbar_Height = $('.m-navbar1').height();
+    // restore margin-top to navbar
+    fn_navbarMarginTop();
 
     // add negative margin top to main page
-    $('main#primary.site-main').css('margin-top', '-' + navbar_Height + 'px' );
+    fn_mainMarginTop(-navbar_height_initial);
 
-    // add padding top
-    if( $('div[class^="m-header"], div[class*=" m-header"]').length ) {
-      // to header if exists
-      $('div[class^="m-header"], div[class*=" m-header"]').first().attr('style','');
-      var header_paddingTop = $('div[class^="m-header"], div[class*=" m-header"]').first().css('padding-top');
-      var header_paddingTop_new = parseInt(header_paddingTop) + navbar_Height;
-      $('div[class^="m-header"], div[class*=" m-header"]').first().css('padding-top', header_paddingTop_new + 'px' );
-    } else {
-      // else to main page
-      $('main#primary.site-main').css('padding-top', navbar_Height + 'px' );
-    }
+    // add padding top to header or main page
+    fn_mainPaddingTop();
 
   }
 
@@ -125,14 +206,22 @@ if ($('.m-navbar1').length) {
   /*
   On document load
   */
-  if (hasFixedTop == true && hasTransparent == false) {
-    fn_navbarFixedTop();
-  }
-  if (hasTransparent == true) {
+
+  if ( hasTransparent == true ) {
     fn_navbarTransparent();
   }
+
   if ( hasTransparent == false ) {
     $('.m-navbar1').addClass('-bgColor');
+  }
+
+  if ( hasFixedTop == true ) {
+    fn_navbarFixedTop();
+  }
+
+  if ( hasFixedTop == true && hasTransparent == true ) {
+    fn_navbarMarginTop( fn_navbarOffsetTop() ); // aggiungo eventuale margin-top a navbar (per WP Admin Bar e/o Topbar)
+    fn_mainMarginTop(); // elimino margin-top a main page
   }
 
 
@@ -142,12 +231,17 @@ if ($('.m-navbar1').length) {
   */
   $(window).on('resize', function(){
 
-    if (hasFixedTop == true) {
+    if ( hasFixedTop == true ) {
       fn_navbarFixedTop();
     }
 
-    if (hasTransparent == true) {
+    if ( hasTransparent == true ) {
       fn_navbarTransparent();
+    }
+
+    if ( hasFixedTop == true && hasTransparent == true ) {
+      fn_navbarMarginTop( fn_navbarOffsetTop() ); // aggiungo eventuale margin-top a navbar (per WP Admin Bar e/o Topbar)
+      fn_mainMarginTop(); // elimino margin-top a main page
     }
 
   });
@@ -158,16 +252,27 @@ if ($('.m-navbar1').length) {
   On window scroll
   */
   $(window).on('scroll', function(){
-    var window_offsetTop = $(window).scrollTop();
 
     if (hasFixedTop == true) {
+
+      // modifico il margin-top della navbar per lasciare posto alla topbar nel caso in cui ci si trovi in cima alla pagina
+
+      var window_offsetTop = $(window).scrollTop();
+
       if (window_offsetTop > 0) {
-        $('.m-navbar1').css('margin-top', 0);
-      } else {
-        if (hasTransparent == false) {
-          fn_navbarFixedTop();
+        $('.m-navbar1').addClass('-bgColor');
+        if ( hasAdminBar == true ) {
+          fn_navbarMarginTop( adminbar_height_initial );
+        } else {
+          fn_navbarMarginTop();
         }
+      } else {
+        if ( hasTransparent == true ) {
+          $('.m-navbar1').removeClass('-bgColor');
+        }
+        fn_navbarFixedTop();
       }
+
     }
 
   });
@@ -175,190 +280,112 @@ if ($('.m-navbar1').length) {
 
 
   /*
-  On mobile menu show
+  On collapse menu show
   */
   $('#navbarSupportedContent').on('show.bs.collapse', function () {
 
-    $("html, body").animate({ scrollTop: 0 }, 300);
 
-    var window_offsetTop = $(window).scrollTop();
-
-    // Fixed top
-    if (hasFixedTop == true) {
-      $('body').css('overflow', 'hidden');
-      $('div[class^="m-topbar"], div[class*=" m-topbar"]').css('padding-right', '15px');
-
-      if (hasFullscreen == false) {
-
-        setTimeout(function () {
-
-          var window_height = $(window).height();
-          var navbar_height = $('.m-navbar1').height();
-
-          // get eventualy WpAdminBar height
-          if (hasAdminBar == true) {
-            var wpadminbar_Height = $('#wpadminbar').height();
-          } else {
-            var wpadminbar_Height = 0;
-          }
-
-          // get eventualy topbar height
-          if (hasTopbar == true) {
-            topbar_Height = $('div[class^="m-topbar"], div[class*=" m-topbar"]').height();
-          } else {
-            topbar_Height = 0;
-          }
-
-          if ( (navbar_height + wpadminbar_Height + topbar_Height) > window_height ) {
-
-            var navbar_paddingBottom_closed_new = parseInt(navbar_paddingBottom_closed) + parseInt(wpadminbar_Height) + parseInt(topbar_Height);
-
-            $('.m-navbar1').css('padding-bottom', navbar_paddingBottom_closed_new + 'px');
-
-          }
-
-        }, 400);
-
-      }
-
+    // body
+    if ( hasFullscreen == true ) {
+      $('body')
+      .css('overflow-y', 'hidden')
+      ;
+    }
+    if ( hasFullscreen == true && hasFixedTop == true ) {
+      $('body')
+      .css('padding-right', '15px')
+      ;
     }
 
-    // Fullscreen
-    if (hasFullscreen == true) {
 
-      $('body').css('overflow', 'hidden');
+    // topbar
+    if ( hasTopbar == true && hasFixedTop == false && hasTransparent == false) {
+      var topbar_paddingRight_initial_new = topbar_paddingRight_initial + 15;
+      $('div[class^="m-topbar"], div[class*=" m-tobar"]')
+      .css('padding-right', topbar_paddingRight_initial_new + 'px');
+      ;
+    }
 
-      // add background color
-      $('.m-navbar1').addClass('-bgColor');
 
-      // get window height
-      var window_height = $(window).height();
-
-      // get eventualy WpAdminBar height
-      if (hasAdminBar == true) {
-        var wpadminbar_Height = $('#wpadminbar').height();
-      } else {
-        var wpadminbar_Height = 0;
-      }
-
-      // get eventualy topbar height
-      if (hasTopbar == true) {
-        topbar_Height = $('div[class^="m-topbar"], div[class*=" m-topbar"]').height();
-      } else {
-        topbar_Height = 0;
-      }
-
-      // get eventualy negative pagemain margin-top
-      var pagemain_marginTop = parseInt($('main#primary.site-main').css('margin-top'));
-      if (pagemain_marginTop >= 0) {
-        pagemain_marginTop = 0;
-      }
-
-      // calculate navbar height
-      var navbar_height = window_height - wpadminbar_Height - topbar_Height - pagemain_marginTop;
-
-      // set navbar height
-      $('.m-navbar1').css('min-height', navbar_height + 'px').css('overflow-y', 'scroll');
+    // navbar
+    $('.m-navbar1')
+    .addClass('-bgColor')
+    ;
+    if ( hasFullscreen == true ) {
+      $('.m-navbar1')
+      .css('min-height', 'calc( 100vh + ' + navbar_height_initial + 'px )')
+      .css('overflow-y', 'scroll')
+      ;
+    } else {
       setTimeout(function () {
-        $('.m-navbar1').css('height', navbar_height + 'px')
+        var navbar_height_new = $('.m-navbar1').height() + navbar_height_initial;
+        var navbar_paddingBottom_new = navbar_paddingBottom_initial + navbar_height_initial;
+        $('.m-navbar1')
+        .css('min-height', navbar_height_new + 'px')
+        .css('padding-bottom', navbar_paddingBottom_new + 'px')
+        ;
       }, 300);
-
     }
 
-    if ( hasFixedTop == false ) {
-      // Padding bottom
-      var window_offsetTop = $(window).scrollTop();
-      var window_height = $(window).height();
-      var navbar_height = $('.m-navbar1__nav').height() + parseInt($('.m-navbar1__nav').css('padding-top')) + parseInt($('.m-navbar1__nav').css('padding-bottom'));
-      setTimeout(function () {
-        if (window_offsetTop == 0 && (navbar_height > window_height)) {
-          var navbar_PaddingBottom =  parseInt($('.m-navbar1').css('padding-bottom'));
-          var topbar_Height = $('div[class^="m-topbar"], div[class*=" m-topbar"]').height();
-          var pagemain_marginTop = parseInt($('main#primary.site-main').css('margin-top'));
-          if (pagemain_marginTop >= 0) {
-            pagemain_marginTop = 0;
-          }
-          var navbar_New_PaddingBottom = navbar_PaddingBottom + topbar_Height - pagemain_marginTop;
-          $('.m-navbar1').css('padding-bottom', navbar_New_PaddingBottom + 'px');
-        }
-      }, 400);
 
-
-      if (navbar_height < window_height) {
-        var pagemain_marginTop = parseInt($('main#primary.site-main').css('margin-top'));
-        if (pagemain_marginTop >= 0) {
-          pagemain_marginTop = 0;
-        }
-        $('.m-navbar1').css('padding-bottom', Math.abs(pagemain_marginTop) + 'px');
-      }
+    // main page
+    if ( hasFixedTop == false && hasTransparent == false ) {
+      var main_paddingRight_new = main_paddingRight_initial + 15;
+      $('main#primary.site-main')
+      .css('padding-right', main_paddingRight_new + 'px')
+      ;
     }
+
 
   }) // On mobile menu show
 
 
 
   /*
-  On mobile menu hide
+  On collapse menu hide
   */
   $('#navbarSupportedContent').on('hide.bs.collapse', function () {
 
-    $('body').css('overflow', 'visible');
-    var window_offsetTop = $(window).scrollTop();
 
-    // Fixed top
-    if (hasFixedTop == true) {
+    // body
+    $('body')
+    .css('overflow-y', 'auto')
+    .css('padding-right', '0')
+    .css('padding-bottom', navbar_paddingBottom_initial + 'px')
+    ;
 
-      $('div[class^="m-topbar"], div[class*=" m-topbar"]');
 
-      $('.m-navbar1').css('padding-bottom', navbar_paddingBottom_closed ).css('padding-right', '0');
-
-      if (window_offsetTop > 0) {
-        $('.m-navbar1').css('margin-top', 0);
-      } else {
-        setTimeout(function () {
-          if (hasTransparent == false) {
-            fn_navbarFixedTop();
-          }
-        }, 400);
-      }
-
+    // topbar
+    if ( hasTopbar == true ) {
+      $('div[class^="m-topbar"], div[class*=" m-tobar"]')
+      .css('padding-right', topbar_paddingRight_initial + 'px');
+      ;
     }
 
-    // Fullscreen
-    if (hasFullscreen == true) {
-      $('.m-navbar1').css('min-height', '0').css('height', 'auto').css('overflow-y', 'hidden');
 
-    }
+    // navbar
+    $('.m-navbar1')
+    .css('min-height', '0')
+    .css('overflow-y', 'hidden')
+    ;
 
-    // Transparent
-    if (hasTransparent == true) {
-
-      $('.m-navbar1').css('padding-bottom', '0');
+    if ( hasTransparent == true ) {
 
       // remove background color
       setTimeout(function () {
-        $('.m-navbar1').removeClass('-bgColor');
+        $('.m-navbar1')
+        .removeClass('-bgColor')
+        ;
       }, 300);
 
     }
 
-    // Padding bottom
-    if (hasTopbar == true) {
-      setTimeout(function () {
-        var window_offsetTop = $(window).scrollTop();
-        var window_height = $(window).height();
-        if (window_offsetTop == 0) {
-          var navbar_PaddingBottom =  parseInt($('.m-navbar1').css('padding-bottom'));
-          var topbar_Height = $('div[class^="m-topbar"], div[class*=" m-topbar"]').height();
-          var pagemain_marginTop = parseInt($('main#primary.site-main').css('margin-top'));
-          if (pagemain_marginTop >= 0) {
-            pagemain_marginTop = 0;
-          }
-          var navbar_New_PaddingBottom = navbar_PaddingBottom - topbar_Height + pagemain_marginTop;
-          $('.m-navbar1').css('padding-bottom', navbar_New_PaddingBottom + 'px');
-        }
-      }, 200);
-    }
+
+    // main page
+    $('main#primary.site-main')
+    .css('padding-right', main_paddingRight_initial + 'px')
+    ;
+
 
   }) // On mobile menu hide
 
