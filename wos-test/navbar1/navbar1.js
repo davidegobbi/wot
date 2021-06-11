@@ -58,6 +58,14 @@ if ($('.m-navbar1').length) {
   }
 
 
+  /*
+  Se fixedTop, aggiungo anche fullscreen
+  */
+  if ( hasFixedTop == true ) {
+    $('.m-navbar1').addClass('-fullscreen');
+    var hasFullscreen = true;
+  }
+
 
   /*
   Functions
@@ -66,7 +74,7 @@ if ($('.m-navbar1').length) {
 
   /**
   * @title: Navbar top offset
-  * @description: Calcolo il top offset della navbar nel caso siano presenti Wp * * Admin Bar e Topbar
+  * @description: Calcolo il top offset della navbar nel caso siano presenti Wp Admin Bar e Topbar
   * @return: {integer} navbarOffsetTop
   **/
   function fn_navbarOffsetTop() {
@@ -268,7 +276,10 @@ if ($('.m-navbar1').length) {
         }
       } else {
         if ( hasTransparent == true ) {
-          $('.m-navbar1').removeClass('-bgColor');
+          if ( $('.m-navbar1 .collapsing').length ) {
+          } else {
+            $('.m-navbar1').removeClass('-bgColor');
+          }
         }
         fn_navbarFixedTop();
       }
@@ -291,15 +302,14 @@ if ($('.m-navbar1').length) {
       .css('overflow-y', 'hidden')
       ;
     }
-    if ( hasFullscreen == true && hasFixedTop == true ) {
-      $('body')
-      .css('padding-right', '15px')
-      ;
+    if ( hasFixedTop == true ) {
+      $(window).scrollTop(0);
     }
 
 
+
     // topbar
-    if ( hasTopbar == true && hasFixedTop == false && hasTransparent == false) {
+    if ( hasTopbar == true && hasFullscreen == true) {
       var topbar_paddingRight_initial_new = topbar_paddingRight_initial + 15;
       $('div[class^="m-topbar"], div[class*=" m-tobar"]')
       .css('padding-right', topbar_paddingRight_initial_new + 'px');
@@ -315,24 +325,22 @@ if ($('.m-navbar1').length) {
       $('.m-navbar1')
       .css('min-height', 'calc( 100vh + ' + navbar_height_initial + 'px )')
       .css('overflow-y', 'scroll')
+      .css('position', 'absolute')
       ;
-    } else {
-      setTimeout(function () {
-        var navbar_height_new = $('.m-navbar1').height() + navbar_height_initial;
-        var navbar_paddingBottom_new = navbar_paddingBottom_initial + navbar_height_initial;
-        $('.m-navbar1')
-        .css('min-height', navbar_height_new + 'px')
-        .css('padding-bottom', navbar_paddingBottom_new + 'px')
-        ;
-      }, 300);
+
+      /*
+      Aggiungo un padding-bottom per compensare il top offset
+      */
+      var navbar_paddingBottom_new = navbar_height_initial + fn_navbarOffsetTop();
+      $('.m-navbar1')
+      .css('padding-bottom', navbar_paddingBottom_new + 'px')
+      ;
     }
 
 
-    // main page
-    if ( hasFixedTop == false && hasTransparent == false ) {
-      var main_paddingRight_new = main_paddingRight_initial + 15;
+    if ( hasTransparent == true || hasFullscreen == true ) {
       $('main#primary.site-main')
-      .css('padding-right', main_paddingRight_new + 'px')
+      .css('margin-top', '0')
       ;
     }
 
@@ -352,6 +360,7 @@ if ($('.m-navbar1').length) {
     .css('overflow-y', 'auto')
     .css('padding-right', '0')
     .css('padding-bottom', navbar_paddingBottom_initial + 'px')
+    .css('min-height', 'auto' )
     ;
 
 
@@ -367,7 +376,14 @@ if ($('.m-navbar1').length) {
     $('.m-navbar1')
     .css('min-height', '0')
     .css('overflow-y', 'hidden')
+    .css('padding-bottom', navbar_paddingBottom_initial)
+    .css('position', 'relative')
     ;
+    if ( hasFixedTop == true ) {
+      $('.m-navbar1')
+      .css('position', 'fixed')
+      ;
+    }
 
     if ( hasTransparent == true ) {
 
@@ -385,6 +401,12 @@ if ($('.m-navbar1').length) {
     $('main#primary.site-main')
     .css('padding-right', main_paddingRight_initial + 'px')
     ;
+    if ( hasTransparent == true ) {
+      fn_mainMarginTop(-navbar_height_initial);
+    }
+    if ( hasTransparent == true && hasFullscreen == true && hasFixedTop == true ) {
+      fn_mainMarginTop();
+    }
 
 
   }) // On mobile menu hide

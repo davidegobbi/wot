@@ -39,7 +39,8 @@ Stylesheet
     }
   }
   &.-fullscreen {
-
+    width: 100%;
+    z-index: 10;
   }
   &.-bgColor {
     background-color: $navbar1_backgroundColor;
