@@ -5,9 +5,15 @@ Settings
 */
 
 // Appearance
-$navbar1_backgroundColor: grey; // background-color
+$navbar1_backgroundColor_light: $gray-400; // background-color
+$navbar1_backgroundColor_dark: $gray-600; // background-color
 $navbar1_logo_maxHeight: 60px; // logo max-height
-$navbar1_toggler_icon: '../imgs/icon-hamburger.svg'; // menu toggler icon
+
+// Menu toggler
+$navbar1_toggler_width: 32px;
+$navbar1_toggler_height: 40px;
+$navbar1_toggler_hamburger_line_height: 3px;
+$navbar1_toggler_hamburger_line_distance: 12px;
 
 // Responsive
 $navbar1_mobileBreakpoint: ''; // mobile breakpoint
@@ -24,6 +30,36 @@ Stylesheet
   max-height: 100%;
   min-height: 0;
   transition: min-height .5s ease, margin-top .3s ease, background-color .3s ease;
+  &.-light {
+    &.-bgColor {
+      background-color: $navbar1_backgroundColor_light;
+    }
+    .m-navbar1__toggler {
+      span {
+        background-color: $navbar-light-color;
+      }
+      &:hover {
+        span {
+          background-color: $navbar-light-hover-color;
+        }
+      }
+    }
+  }
+  &.-dark {
+    &.-bgColor {
+      background-color: $navbar1_backgroundColor_dark;
+    }
+    .m-navbar1__toggler {
+      span {
+        background-color: $navbar-dark-color;
+      }
+      &:hover {
+        span {
+          background-color: $navbar-dark-hover-color;
+        }
+      }
+    }
+  }
   &.-fixedtop {
     left: 0;
     position: fixed;
@@ -42,13 +78,44 @@ Stylesheet
     width: 100%;
     z-index: 10;
   }
-  &.-bgColor {
-    background-color: $navbar1_backgroundColor;
-  }
   &__nav {
     flex-wrap: wrap;
     padding-left: 0;
     padding-right: 0;
+  }
+  &__toggler {
+    width: $navbar1_toggler_width;
+    height: $navbar1_toggler_height;
+    position: relative;
+    border: none;
+    span {
+      position: absolute;
+      width: 100%;
+      height: $navbar1_toggler_hamburger_line_height;
+      left: 0;
+      opacity: 0;
+      transition: all .4s ease;
+      &:first-of-type {
+        opacity: 1;
+        transform: translateY(-0) rotate(45deg);
+      }
+      &:last-of-type {
+        opacity: 1;
+        transform: translateY(0) rotate(-45deg);
+      }
+    }
+    &.collapsed {
+      span {
+        top: 50%;
+        opacity: 1;
+        &:first-of-type {
+          transform: translateY(-$navbar1_toggler_hamburger_line_distance) rotate(0);
+        }
+        &:last-of-type {
+          transform: translateY($navbar1_toggler_hamburger_line_distance) rotate(0);
+        }
+      }
+    }
   }
   .navbar-nav {
     flex-wrap: wrap;
@@ -64,8 +131,5 @@ Stylesheet
       left: 50%;
       transform: translateX(-50%);
     }
-  }
-  .navbar-toggler-icon {
-    background-image: url($navbar1_toggler_icon);
   }
 }

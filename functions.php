@@ -199,6 +199,12 @@ require get_template_directory() . '/inc/user-doc.php';
 
 
 /*
+Theme mod
+*/
+require get_template_directory() . '/inc/theme-mod.php';
+
+
+/*
 Custom fields
 */
 require get_template_directory() . '/custom-fields/custom-fields.php';
