@@ -52,17 +52,6 @@ function my_acf_block_render_callback( $block ) {
 
 
 /*
-Remove embedded stylesheet for Gutenberg editor on the back end
-https://stackoverflow.com/questions/54203925/remove-embedded-stylesheet-for-gutenberg-editor-on-the-back-end
-*/
-add_filter( 'block_editor_settings' , 'remove_guten_wrapper_styles' );
-function remove_guten_wrapper_styles( $settings ) {
-  unset($settings['styles'][0]);
-  return $settings;
-}
-
-
-/*
 Enqueue WOS assets in WP admin (for backend preview)
 */
 function load_editor_wos_style_scripts(){
